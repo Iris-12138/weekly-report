@@ -88,6 +88,11 @@
   .work-step .ws-k{font-size:11px;font-weight:600;color:var(--primary);margin-bottom:5px;letter-spacing:.5px}
   .work-step .ws-v{font-size:12.5px;color:var(--text-2);line-height:1.65}
   .work-step .ws-v strong{color:var(--text)}
+  .work-link{grid-column:1 / -1;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-soft);text-align:right}
+  .work-link a{font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;padding:6px 12px;background:var(--primary-light);border-radius:6px;transition:.15s;display:inline-block}
+  .work-link a:hover{background:var(--primary);color:#fff}
+  .work-image{grid-column:1 / -1;margin-top:12px;border:1px solid var(--border-soft);border-radius:8px;overflow:hidden;background:#fff}
+  .work-image img{display:block;width:100%;height:auto}
   @media(max-width:760px){.work-card .work-body{grid-template-columns:1fr;gap:12px}.work-step{border-left:none;padding:0;border-top:1px dashed var(--border-soft);padding-top:12px}.work-step:first-child{border-top:none;padding-top:0}}
   /* chart row */
   .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
@@ -293,6 +298,7 @@
         <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">员工离职、活水调岗后的额度归属是答疑高频区；开发侧更新了规则。</div></div>
         <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">对齐开发侧，<strong>修订规则更新处</strong>，并补全跨部门 / 部门内活水两类场景的流程与额度计算示例。</div></div>
         <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">确认后并入两版操作手册。</div></div>
+        <div class="work-link"><a href="https://doc.weixin.qq.com/doc/w3_AFsA8AbAACcCNoPlHazCpQJSOeUKY?scode=AJEAIQdfAAoA60Ssj8ASoA2wZbAI0" target="_blank">📄 查看完整文档 ↗</a></div>
       </div>
     </details>
 
@@ -309,6 +315,7 @@
         <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">团队账单是上周识别的两大高频痛点之一，问法零散但内核重复。</div></div>
         <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">整理高频问题与标准化解答。</div></div>
         <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">完善一处解决解决方法后可直接投入日常答疑。</div></div>
+        <div class="work-link"><a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CNYSJLaiAIQJK8FboZ?scode=AJEAIQdfAAo6cNa77DASoA2wZbAI0" target="_blank">📄 查看完整文档 ↗</a></div>
       </div>
     </details>
 
@@ -325,6 +332,7 @@
         <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">二期一批功能 7.27 上线，改动散落在多处沟通/会议中，缺统一说明。</div></div>
         <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">梳理一键复制上月额度文案 / 弹窗优化 / BG 卡片账目展示等优化点及归属。</div></div>
         <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">交付开发侧并跟进至上线。</div></div>
+        <div class="work-link"><a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CN2KqG4hO0RQy5Tnrs?scode=AJEAIQdfAAo8wjwV8IASoA2wZbAI0" target="_blank">📄 查看完整文档 ↗</a></div>
       </div>
     </details>
 
@@ -333,14 +341,15 @@
         <div class="wh-ico" style="background:var(--orange-light);color:var(--orange)">📊</div>
         <div class="wh-info">
           <div class="wh-t">操作记录 + 额度划拨展示方案矩阵</div>
-          <div class="wh-sum"><strong>15 种场景 × 14 列展示结构</strong> · 骨架已评审，Excel 示例下周补</div>
+          <div class="wh-sum"><strong>15 种场景 × 14 列展示结构</strong> · 框架已评审，Excel 示例下周补</div>
         </div>
         <span class="wh-arrow">▾</span>
       </summary>
       <div class="work-body">
         <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">答疑反复出现"看不懂操作记录 ± / -1000"，根因是操作记录不是全量。</div></div>
         <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">梳理出<strong>额度划拨规则矩阵</strong>（月包/年包 × 增量/存量 × 组织/个人，40种情形中共存在 15 种情况）+ <strong>操作记录 14 列展示结构。</strong></div></div>
-        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">矩阵骨架已交文睿老师评审；下方具体 Excel 示例待完善，是下周工作之一。</div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">矩阵框架已与文睿老师讨论完毕；下方具体 Excel 示例待完善，是下周工作之一。</div></div>
+        <div class="work-image"><img src="matrix-preview.png" alt="额度划拨规则矩阵"></div>
       </div>
     </details>
   </div>
@@ -370,9 +379,9 @@
     </details>
   </div>
 
-  <!-- 4. 下周计划 -->
+  <!-- 4. 卡点 尝试与反思 -->
   <div class="section">
-    <h2><span class="num">4</span>下周工作计划</h2>
+    <h2><span class="num">4</span>卡点 · 尝试与反思</h2>
 
     <div class="ref-card highlight">
       <h4>🔧 一个真实的卡点：从本地 HTML 到可分享的线上版，"最后一公里"比想象中远</h4>
@@ -405,7 +414,7 @@
   <!-- 5. 下周计划 -->
   <div class="section">
     <h2><span class="num">5</span>下周工作计划</h2>
-    <p class="desc"><strong>本周已把指引站的"骨架"做出来了，下周把它填满、推出去、真正到达 BP</strong>——从"做出来"走到"用起来"。</p>
+    <p class="desc"><strong>本周已把指引网站的框架做出来了，下周把它填满、推出去、真正到达 BP</strong>——从"做出来"走到"用起来"。</p>
     <div class="next-list">
       <div class="next-item">
         <div class="n-num">1</div>
@@ -413,7 +422,7 @@
           <span class="n-src">承接自 · 重点成果「指引网站初版已完成」</span>
           <div class="n-title">把指引站从"可用"推到"实用"</div>
           <div class="n-desc">补录操作步骤的聚焦截图与短视频演示、校对全部文案；补齐第二批待上线与排期中功能的准备说明——上线的写实操指引，排期中的写预告占位。</div>
-          <div class="n-from"><span class="nf-label">承接逻辑：</span>指引站骨架已搭好，下周把内容填满——<strong>让指引站成为 BP 了解新功能的第一入口</strong>，而不是又回来问。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>指引网站已基本搭好，下周把内容填满——<strong>让指引站成为 BP 了解新功能的第一入口</strong>，而不是又回来问。</div>
         </div>
       </div>
       <div class="next-item">
@@ -422,7 +431,7 @@
           <span class="n-src">承接自 · 4 项知识资产收尾</span>
           <div class="n-title">完成矩阵 Excel 示例 + 多份文档定稿发布</div>
           <div class="n-desc">把操作记录展示矩阵的<strong>下方 Excel 示例</strong>写完（含额度划拨、月包调整的完整字段样例），与 ainsonliang 对齐后给开发侧落地方案。</div>
-          <div class="n-from"><span class="nf-label">承接逻辑：</span>本周多份知识资产处于"骨架完成"状态——收尾定稿才真正闭环；矩阵的 Excel 示例是交给开发侧的最后一公里。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>本周多份知识资产处于"框架完成"状态——收尾定稿才真正闭环；例如完成矩阵的 Excel 示例后才能把方案和demo交给开发侧,然后继续跟进直至功能优化完毕。</div>
         </div>
       </div>
     </div>
