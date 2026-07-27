@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规划分析中心实习生周报-成俊晖（7.20-7.24）</title>
+<style>
+  :root{
+    --primary:#0052D9; --primary-light:#E8F3FF; --primary-soft:#366EF4;
+    --green:#00A870; --green-light:#E8F8F2; --orange:#ED7B2F; --orange-light:#FFF3E8;
+    --red:#D54941; --red-light:#FFECE8; --purple:#7B61FF; --purple-light:#F0EDFF;
+    --bg:#F7F8FA; --card:#FFFFFF; --text:#1D2129; --text-2:#4E5969; --text-3:#86909C;
+    --border:#E5E6EB; --border-soft:#F2F3F5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+  /* header */
+  .header{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;border-radius:16px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+  .header::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(255,255,255,.08);border-radius:50%}
+  .header::before{content:"";position:absolute;right:60px;bottom:-80px;width:160px;height:160px;background:rgba(255,255,255,.06);border-radius:50%}
+  .header h1{font-size:24px;font-weight:600;margin-bottom:10px;position:relative;z-index:1}
+  .header .sub{font-size:14px;opacity:.9;position:relative;z-index:1}
+  .header .meta{display:flex;gap:24px;margin-top:18px;font-size:13px;position:relative;z-index:1;flex-wrap:wrap}
+  .header .meta span{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+  /* 主线导航条 */
+  .thread{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;border-radius:14px;padding:22px 26px;margin-bottom:24px}
+  .thread .tl{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .thread-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .tf-node{flex:1;min-width:170px;background:#fff;border-radius:10px;padding:13px 15px;border:1px solid #D4E3FA;position:relative}
+  .tf-node .tf-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:7px}
+  .tf-node.past .tf-tag{background:var(--border-soft);color:var(--text-3)}
+  .tf-node.now .tf-tag{background:var(--primary-light);color:var(--primary)}
+  .tf-node.next .tf-tag{background:var(--green-light);color:var(--green)}
+  .tf-node .tf-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5}
+  .tf-node .tf-d{font-size:12px;color:var(--text-3);line-height:1.55}
+  .tf-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.tf-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.tf-node{min-width:100%}}
+  /* section */
+  .section{background:var(--card);border-radius:14px;padding:28px 32px;margin-bottom:20px;border:1px solid var(--border-soft)}
+  .section h2{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section h2 .num{width:26px;height:26px;background:var(--primary);color:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .section .desc{color:var(--text-3);font-size:13px;margin-bottom:20px;margin-left:36px}
+  .section .desc strong{color:var(--text-2)}
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--bg);border-radius:12px;padding:18px;border:1px solid var(--border-soft);position:relative;overflow:hidden}
+  .stat .label{font-size:13px;color:var(--text-3);margin-bottom:8px}
+  .stat .value{font-size:30px;font-weight:700;color:var(--primary);line-height:1}
+  .stat .unit{font-size:14px;color:var(--text-3);font-weight:400;margin-left:4px}
+  .stat .note{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.5}
+  .stat .stat-sub{display:inline-block;font-size:11px;font-weight:600;color:var(--primary);background:var(--primary-light);padding:2px 8px;border-radius:6px;margin-top:8px}
+  .stat.green .value{color:var(--green)} .stat.orange .value{color:var(--orange)} .stat.purple .value{color:var(--purple)}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  /* 头号成果卡 */
+  .hero-output{border-radius:14px;overflow:hidden;margin:8px 0 18px;border:1px solid #BBD6FF}
+  .ho-bar{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .ho-tag{display:inline-block;font-size:11px;font-weight:700;background:rgba(255,255,255,.25);padding:3px 10px;border-radius:8px;white-space:nowrap}
+  .ho-t{font-size:17px;font-weight:700;line-height:1.4}
+  .ho-t-link{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:4px;border-bottom:1.5px solid rgba(255,255,255,.5);padding-bottom:1px;transition:.15s}
+  .ho-t-link:hover{color:#fff;border-bottom-color:#fff}
+  .ho-body{background:linear-gradient(135deg,#F0F6FF,#F8FAFF);padding:18px 24px 20px}
+  .ho-d{font-size:13.5px;color:var(--text-2);line-height:1.75;margin-bottom:16px}
+  .ho-d strong{color:var(--text);font-weight:700}
+  .ho-feats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .ho-feat{font-size:13px;font-weight:600;color:var(--primary);background:#fff;border:1px solid #BBD6FF;padding:8px 18px;border-radius:20px;transition:.15s;box-shadow:0 1px 3px rgba(0,82,217,.06)}
+  .ho-feat:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,82,217,.12);border-color:var(--primary)}
+  /* 核心工作卡：背景→目标→做了什么→结果（可折叠版） */
+  .work-card{background:var(--bg);border-radius:12px;border:1px solid var(--border-soft);margin-top:12px;overflow:hidden;transition:.2s}
+  .work-card>summary{cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:12px;list-style:none;background:#fff;transition:.15s}
+  .work-card>summary:hover{background:#FAFBFC}
+  .work-card>summary::-webkit-details-marker{display:none}
+  .work-card>summary::marker{display:none}
+  .wh-info{flex:1;min-width:0;line-height:1.5}
+  .wh-t{font-size:14px;font-weight:600;color:var(--text)}
+  .wh-sum{font-size:12px;color:var(--text-3);margin-top:3px}
+  .wh-sum strong{color:var(--text-2);font-weight:600}
+  .wh-arrow{margin-left:auto;font-size:14px;color:var(--text-3);transition:transform .25s ease;flex-shrink:0}
+  .work-card[open]>.summary .wh-arrow,.work-card[open] .wh-arrow{transform:rotate(180deg)}
+  .work-card[open]>summary{border-bottom:1px solid var(--border-soft)}
+  .work-card .work-body{padding:14px 18px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--bg)}
+  .work-step{padding:0 14px;position:relative;border-left:1px solid var(--border-soft)}
+  .work-step:first-child{border-left:none;padding-left:0}
+  .work-step .ws-k{font-size:11px;font-weight:600;color:var(--primary);margin-bottom:5px;letter-spacing:.5px}
+  .work-step .ws-v{font-size:12.5px;color:var(--text-2);line-height:1.65}
+  .work-step .ws-v strong{color:var(--text)}
+  @media(max-width:760px){.work-card .work-body{grid-template-columns:1fr;gap:12px}.work-step{border-left:none;padding:0;border-top:1px dashed var(--border-soft);padding-top:12px}.work-step:first-child{border-top:none;padding-top:0}}
+  /* chart row */
+  .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+  @media(max-width:760px){.chart-row{grid-template-columns:1fr}}
+  .chart-box{background:var(--bg);border-radius:12px;padding:20px;border:1px solid var(--border-soft)}
+  .chart-box h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:16px}
+  /* bar chart */
+  .bar-chart{display:flex;flex-direction:column;gap:14px}
+  .bar-row{display:flex;align-items:center;gap:12px}
+  .bar-row .bar-label{width:66px;font-size:13px;color:var(--text-2);text-align:right;flex-shrink:0}
+  .bar-row .bar-track{flex:1;height:26px;background:var(--border-soft);border-radius:6px;overflow:hidden;position:relative}
+  .bar-row .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#6B5A54;font-size:12px;font-weight:600;transition:width .6s}
+  /* insight box */
+  .insight{background:var(--primary-light);border-left:3px solid var(--primary);border-radius:8px;padding:16px 20px;margin-top:18px;font-size:14px;color:var(--text-2)}
+  .insight strong{color:var(--primary)}
+  .insight.orange{background:var(--orange-light);border-color:var(--orange)} .insight.orange strong{color:var(--orange)}
+  .insight.green{background:var(--green-light);border-color:var(--green)} .insight.green strong{color:var(--green)}
+  /* reflection grid */
+  .ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  @media(max-width:760px){.ref-grid{grid-template-columns:1fr}}
+  .ref-card{background:var(--bg);border-radius:12px;padding:20px;border:1px solid var(--border-soft);transition:transform .25s ease,box-shadow .25s ease}
+  .ref-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,82,217,.10)}
+  .ref-card.highlight{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;grid-column:1 / -1;position:relative}
+  .ref-card h4{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .ref-card ul{list-style:none}
+  .ref-card li{font-size:13px;color:var(--text-2);margin-bottom:10px;padding-left:16px;position:relative;line-height:1.72}
+  .ref-card li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--text-3)}
+  .ref-card li strong{color:var(--text)}
+  .ref-card li:last-child{margin-bottom:0}
+  /* 推导链小箭头 */
+  .derive{margin:10px 0 2px;padding:10px 12px;background:rgba(0,82,217,.04);border-radius:8px;border:1px dashed var(--border)}
+  .derive-step{font-size:12.5px;color:var(--text-2);line-height:1.65;margin-bottom:6px}
+  .derive-step:last-child{margin-bottom:0}
+  .derive-step .da{display:inline-block;font-weight:600;color:var(--text-3);margin-right:6px}
+  .derive-step .da.act{color:var(--primary)}
+  .link-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--primary);background:var(--primary-light);padding:1px 8px;border-radius:6px;margin-left:2px}
+  /* 转折卡内容 */
+  .turn-body{margin-top:4px}
+  .turn-sub{font-size:13.5px;color:var(--text-2);line-height:1.75;margin-bottom:14px}
+  .turn-sub strong{color:var(--text)}
+  .turn-chain{display:flex;flex-direction:column;gap:6px;margin:4px 0}
+  .turn-arrow{transform:rotate(90deg);color:var(--primary);font-size:16px;line-height:1;align-self:center;padding:2px 0}
+  .turn-card{background:#fff;border-radius:10px;padding:13px 15px;border:1px solid var(--border)}
+  .turn-card.mid{border-color:#9DC4FF;box-shadow:0 4px 16px rgba(0,82,217,.12)}
+  .turn-card .tc-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:8px;background:var(--border-soft);color:var(--text-3)}
+  .turn-card.mid .tc-tag{background:var(--primary-light);color:var(--primary)}
+  .turn-card .tc-t{font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5}
+  .turn-card .tc-d{font-size:11.5px;color:var(--text-3);line-height:1.55}
+  .turn-arrow{display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.turn-chain{gap:4px}}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  thead th{background:var(--bg);color:var(--text-2);font-weight:600;text-align:left;padding:11px 14px;border-bottom:2px solid var(--border);white-space:nowrap}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--border-soft);color:var(--text-2);vertical-align:top}
+  tbody tr:hover{background:var(--primary-light)}
+  .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11px;font-weight:500;white-space:nowrap}
+  .b-blue{background:var(--primary-light);color:var(--primary)} .b-green{background:var(--green-light);color:var(--green)}
+  .b-orange{background:var(--orange-light);color:var(--orange)} .b-purple{background:var(--purple-light);color:var(--purple)}
+  .b-gray{background:var(--border-soft);color:var(--text-3)} .b-red{background:var(--red-light);color:var(--red)}
+  /* details */
+  details{margin-top:12px;border:1px solid var(--border-soft);border-radius:10px;overflow:hidden}
+  summary{cursor:pointer;padding:14px 18px;font-size:14px;font-weight:600;color:var(--text);background:var(--bg);list-style:none;display:flex;align-items:center;justify-content:space-between}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"展开 ▾";font-size:12px;color:var(--primary);font-weight:500}
+  details[open] summary::after{content:"收起 ▴"}
+  .detail-body{padding:0 18px 8px}
+  .qa-item{padding:16px 0;border-bottom:1px dashed var(--border-soft)}
+  .qa-item:last-child{border-bottom:none}
+  .qa-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+  .qa-a{font-size:13px;color:var(--text-2);line-height:1.7}
+  .qa-meta{font-size:12px;color:var(--text-3);margin-bottom:6px}
+  .qa-a .tk{display:inline-block;font-size:11px;font-weight:600;color:var(--primary);background:var(--primary-light);padding:1px 8px;border-radius:6px;margin-right:4px}
+  /* next steps */
+  .next-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .next-item{display:flex;gap:14px;align-items:flex-start}
+  .next-item .n-num{width:28px;height:28px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .next-item .n-content{flex:1}
+  .n-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+  .n-desc{font-size:13px;color:var(--text-2);line-height:1.6}
+  .n-from{margin-top:8px;font-size:12.5px;color:var(--text-2);line-height:1.6;padding:8px 12px;background:var(--green-light);border-left:3px solid var(--green);border-radius:0 8px 8px 0}
+  .n-from .nf-label{font-weight:600;color:var(--green);margin-right:4px}
+  .n-from strong{color:var(--text)}
+  .n-src{display:inline-block;font-size:11px;font-weight:600;color:var(--text-3);background:var(--border-soft);padding:2px 9px;border-radius:8px;margin-bottom:8px}
+  .n-coord{margin-top:8px;font-size:12.5px;color:var(--text-2);line-height:1.6;padding:8px 12px;background:var(--orange-light);border-left:3px solid var(--orange);border-radius:0 8px 8px 0}
+  .n-coord .nf-label{font-weight:600;color:var(--orange);margin-right:4px}
+  .foot{text-align:center;font-size:12px;color:var(--text-3);margin-top:40px;padding-top:20px;border-top:1px solid var(--border-soft);line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- header -->
+  <div class="header">
+    <h1>规划分析中心实习生周报</h1>
+    <div class="sub">2026.07.20 - 07.24 · 从"答疑响应"到"把知识做成 BP 用得上的产品"</div>
+    <div class="meta">
+      <span>👩‍🎓 irisjhcheng(成俊晖)</span>
+      <span>💼 规划分析中心</span>
+      <span>📖 系统运营 · 答疑 · 需求管理 · 知识产品</span>
+      <span>🧑‍🏫 支持导师：文睿老师</span>
+    </div>
+  </div>
+
+  <!-- 贯穿主线 -->
+  <div class="thread">
+    <div class="tl">🧭 本周主线：承上启下，一条闭环</div>
+    <div class="thread-flow">
+      <div class="tf-node past">
+        <span class="tf-tag">上周判断</span>
+        <div class="tf-t">"讲过"≠"会用"</div>
+        <div class="tf-d">咨询高度重复，根源在知识<strong>不好找、不好用</strong>；应从"讲清楚"转向"让 BP 自助查到答案"。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node now">
+        <span class="tf-tag">本周产出</span>
+        <div class="tf-t">《新 Token 操作指引》交互站点</div>
+        <div class="tf-d">4 项知识资产（3 份文档 + 1 个展示矩阵）打底，将上周设想落地为<strong>场景化自助指引网站</strong>，把上周设想落地为可点击的产品。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node next">
+        <span class="tf-tag">下周计划</span>
+        <div class="tf-t">针对下批待上线功能补充实操指引</div>
+        <div class="tf-d">下一批<strong>待上线功能</strong>写实操指引，<strong>排期中新功能</strong>同步预告说明。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. 数据概览 -->
+  <div class="section">
+    <h2><span class="num">1</span>本周关键产出</h2>
+    <p class="desc">本周产出 4 项知识资产（活水规则 / 团队账单 FAQ / 测试环境功能优化 / 操作记录展示矩阵），并<strong>交付一个网页指引</strong>；另处理答疑 11 个、需求 9 条、权限配置 3 项（以上仅含直接对接部分）。</p>
+
+    <!-- 本周头号成果：操作指引站 -->
+    <div class="hero-output">
+      <div class="ho-bar">
+        <span class="ho-tag">★ 本周重点成果</span>
+        <a class="ho-t ho-t-link" href="https://iris-12138.github.io/token-guide/" target="_blank">《新 Token 管理系统 · 操作指引》网页 ↗</a>
+      </div>
+      <div class="ho-body">
+        <div class="ho-d">不是单纯把 Word 版操作手册转化成网页，而是<strong>重构信息架构 + 场景化自助</strong>：BP 先选自己部门的「下放层级」，页面即动态给出对应的分步操作，配图文 + 短视频，把上周提的"图文/网页化"设想真正做成了产品。</div>
+        <div class="ho-feats">
+          <span class="ho-feat">🎯 分配计划 · 场景化自助</span>
+          <span class="ho-feat">🤖 MCP 接入</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">系统问题答疑排查</div>
+        <div class="value">11<span class="unit">个</span></div>
+        <div class="note">覆盖 TEG / WXG / FiT / IEG / S2 / CSIG 等多 BG，各 BG 接口人 （仅含直接对接）</div>
+      </div>
+      <div class="stat green">
+        <div class="label">知识资产产出</div>
+        <div class="value">4<span class="unit">项</span></div>
+        <div class="note">活水规则 · 团队账单 FAQ · 测试环境功能优化 · 操作记录展示矩阵</div>
+      </div>
+      <div class="stat purple">
+        <div class="label">需求收集与反馈</div>
+        <div class="value">9<span class="unit">条</span></div>
+        <div class="note">均已录入需求清单，部分已排期至 8 月前上线</div>
+      </div>
+      <div class="stat orange">
+        <div class="label">权限配置闭环</div>
+        <div class="value">3<span class="unit">项</span></div>
+        <div class="note">各BG增补额度管理员</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 核心工作：5 项交付物 + 1 个指引站 -->
+  <div class="section">
+    <h2><span class="num">2</span>核心工作：5 项交付物 + 1 个指引站</h2>
+    <p class="desc">本周 5 份知识资产 + 1 个交互式指引站，按时间线列出。点击每条标题可展开 4 步详情。</p>
+
+    <details class="work-card" open style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
+      <summary>
+        <div class="wh-ico" style="background:var(--primary);color:#fff">🌐</div>
+        <div class="wh-info">
+          <div class="wh-t" style="color:var(--primary)">《新 Token 操作指引》网页 —— 本周重点成果</div>
+          <div class="wh-sum">场景化自助 + 2 个新功能引导 · <a href="https://iris-12138.github.io/token-guide/" target="_blank">线上版 ↗</a></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">上周诊断：纯文字手册 BP 既不知道有、也不知道翻哪条；二期新功能上线需要新载体。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><strong>重构信息架构</strong>；<strong>场景化自助</strong>——BP 选「下放层级」动态给分步指引；当前已上线 2 个二期新功能引导（分配计划 + MCP 接入）。</div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">初版已完成；下周完善并补齐素材后随新功能上线推送给各 BG。</div></div>
+      </div>
+    </details>
+
+    <details class="work-card">
+      <summary>
+        <div class="wh-ico">📘</div>
+        <div class="wh-info">
+          <div class="wh-t">操作手册 · Q1 活水规则</div>
+          <div class="wh-sum">规则有修改 · <strong>BP 提疑问 → 对齐开发侧 → 规则已修改</strong></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">员工离职、活水调岗后的额度归属是答疑高频区；开发侧更新了规则。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">对齐开发侧，<strong>修订规则更新处</strong>，并补全跨部门 / 部门内活水两类场景的流程与额度计算示例。</div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">确认后并入两版操作手册。</div></div>
+      </div>
+    </details>
+
+    <details class="work-card">
+      <summary>
+        <div class="wh-ico">📋</div>
+        <div class="wh-info">
+          <div class="wh-t">团队账单 FAQ</div>
+          <div class="wh-sum">高频问答标准化</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">团队账单是上周识别的两大高频痛点之一，问法零散但内核重复。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">整理高频问题与标准化解答。</div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">完善一处解决解决方法后可直接投入日常答疑。</div></div>
+      </div>
+    </details>
+
+    <details class="work-card">
+      <summary>
+        <div class="wh-ico">🧪</div>
+        <div class="wh-info">
+          <div class="wh-t">测试环境功能优化文档</div>
+          <div class="wh-sum">7.27 上线新功能优化点</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">二期一批功能 7.27 上线，改动散落在多处沟通/会议中，缺统一说明。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">梳理一键复制上月额度文案 / 弹窗优化 / BG 卡片账目展示等优化点及归属。</div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">交付开发侧并跟进至上线。</div></div>
+      </div>
+    </details>
+
+    <details class="work-card" style="border-color:#FFD7B5">
+      <summary>
+        <div class="wh-ico" style="background:var(--orange-light);color:var(--orange)">📊</div>
+        <div class="wh-info">
+          <div class="wh-t">操作记录 + 额度划拨展示方案矩阵</div>
+          <div class="wh-sum"><strong>15 种场景 × 14 列展示结构</strong> · 骨架已评审，Excel 示例下周补</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">答疑反复出现"看不懂操作记录 ± / -1000"，根因是操作记录不是全量。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v">梳理出<strong>额度划拨规则矩阵</strong>（月包/年包 × 增量/存量 × 组织/个人，40种情形中共存在 15 种情况）+ <strong>操作记录 14 列展示结构。</strong></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">矩阵骨架已交文睿老师评审；下方具体 Excel 示例待完善，是下周工作之一。</div></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 3. 需求收集 -->
+  <div class="section">
+    <h2><span class="num">3</span>需求收集与管理</h2>
+    <p class="desc">本周新收集 9 条系统优化需求，均已录入需求清单。延续上周"收集只做了一半、要走到推动解决"的思路，本周对每条需求都跟进到<strong>状态归位</strong>——已排期 / 正在做方案 / 待评估分层清晰。</p>
+    <details>
+      <summary>📋 本周 9 条需求清单</summary>
+      <div class="detail-body" style="padding:16px 4px 8px">
+        <table>
+          <thead><tr><th>需求</th><th>来源</th><th>类型</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>团队账单增加初始下发和调额字段</td><td>olivaxu</td><td><span class="badge b-orange">账单/明细</span></td><td><span class="badge b-green">预计 8 月前上线</span></td></tr>
+            <tr><td>导出调额记录功能</td><td>olivaxu</td><td><span class="badge b-orange">账单/明细</span></td><td><span class="badge b-red">正在做方案</span></td></tr>
+            <tr><td>组长一键向上级申请额度按钮</td><td>brendahu / robinhnli</td><td><span class="badge b-blue">额度管理</span></td><td><span class="badge b-gray">已记录</span></td></tr>
+            <tr><td>审批提示增加 HR 名字</td><td>guanlaili</td><td><span class="badge b-purple">界面交互</span></td><td><span class="badge b-gray">待商讨方案</span></td></tr>
+            <tr><td>导出权限表格增加组织全路径</td><td>jiawenshou</td><td><span class="badge b-green">权限/审批</span></td><td><span class="badge b-blue">已反馈</span></td></tr>
+            <tr><td>免审批值支持随时开关</td><td>fayeliu</td><td><span class="badge b-blue">额度管理</span></td><td><span class="badge b-gray">已记录</span></td></tr>
+            <tr><td>员工界面不显示审批人</td><td>fayeliu</td><td><span class="badge b-purple">界面交互</span></td><td><span class="badge b-orange">需评估</span></td></tr>
+            <tr><td>团队账号列表增加创建者字段</td><td>zimoding</td><td><span class="badge b-orange">账单/明细</span></td><td><span class="badge b-gray">已记录</span></td></tr>
+            <tr><td>产品名称支持二次编辑</td><td>zimoding</td><td><span class="badge b-purple">界面交互</span></td><td><span class="badge b-gray">已记录</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+
+  <!-- 4. 下周计划 -->
+  <div class="section">
+    <h2><span class="num">4</span>下周工作计划</h2>
+
+    <div class="ref-card highlight">
+      <h4>🔧 一个真实的卡点：从本地 HTML 到可分享的线上版，"最后一公里"比想象中远</h4>
+      <div class="turn-body">
+        <div class="turn-sub">本来以为<strong>部署上线</strong>是最简单的一步——本地做完的 html 传上去就行。结果这一段反而花了最多时间试错。</div>
+        <div class="turn-chain">
+          <div class="turn-card">
+            <span class="tc-tag">卡点</span>
+            <div class="tc-t">本地做完，部署反而最折腾</div>
+            <div class="tc-d">指引站功能做完，原以为用 CloudStudio 部署就能完事——结果这只是临时沙箱，<strong>链接几天后就会失效</strong>；而且每次修改改动都要重新生成新链接。<strong>维护成本高、链接不稳定</strong>。</div>
+          </div>
+          <div class="turn-arrow">➜</div>
+          <div class="turn-card">
+            <span class="tc-tag">尝试</span>
+            <div class="tc-t">EdgeOne Markers / 其他方案</div>
+            <div class="tc-d">EdgeOne Markers 接上 MCP 后发现<strong>没权限</strong>，要走文档申请——对一个实习生做的内部指引站来说太重。又试了其他方式，<strong>要么工具门槛高、要么稳定性不够</strong>，都不尽如人意。</div>
+          </div>
+          <div class="turn-arrow">➜</div>
+          <div class="turn-card mid">
+            <span class="tc-tag">解决</span>
+            <div class="tc-t">✓ GitHub Pages 部署上线</div>
+            <div class="tc-d">最后用 GitHub Pages 部署，<strong>完美符合所有需求</strong>——链接稳定、改动自动更新、维护成本低。今后任何 BP 都能拿到一个不变的地址访问。</div>
+          </div>
+        </div>
+        <div class="turn-sub" style="margin-top:14px"><strong>学到的：</strong>"做完"≠"能用"，"能用"≠"可维护"。交付物不能只考虑"做出来那一刻"，要从一开始就考虑<strong>谁来持续维护、链接能不能稳定、后续改动的成本</strong>。一个稳定的链接，比花里胡哨的功能更重要。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 下周计划 -->
+  <div class="section">
+    <h2><span class="num">5</span>下周工作计划</h2>
+    <p class="desc"><strong>本周已把指引站的"骨架"做出来了，下周把它填满、推出去、真正到达 BP</strong>——从"做出来"走到"用起来"。</p>
+    <div class="next-list">
+      <div class="next-item">
+        <div class="n-num">1</div>
+        <div class="n-content">
+          <span class="n-src">承接自 · 重点成果「指引网站初版已完成」</span>
+          <div class="n-title">把指引站从"可用"推到"实用"</div>
+          <div class="n-desc">补录操作步骤的聚焦截图与短视频演示、校对全部文案；补齐第二批待上线与排期中功能的准备说明——上线的写实操指引，排期中的写预告占位。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>指引站骨架已搭好，下周把内容填满——<strong>让指引站成为 BP 了解新功能的第一入口</strong>，而不是又回来问。</div>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="n-num">2</div>
+        <div class="n-content">
+          <span class="n-src">承接自 · 4 项知识资产收尾</span>
+          <div class="n-title">完成矩阵 Excel 示例 + 多份文档定稿发布</div>
+          <div class="n-desc">把操作记录展示矩阵的<strong>下方 Excel 示例</strong>写完（含额度划拨、月包调整的完整字段样例），与 ainsonliang 对齐后给开发侧落地方案。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>本周多份知识资产处于"骨架完成"状态——收尾定稿才真正闭环；矩阵的 Excel 示例是交给开发侧的最后一公里。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    规划分析中心实习生周报 · 成俊晖（irisjhcheng）· 2026.07.20 - 07.24<br>
+  </div>
+</div>
+</body>
+</html>

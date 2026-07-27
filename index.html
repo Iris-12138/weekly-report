@@ -2,10 +2,49 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>规划分析中心实习生周报</title>
-<meta http-equiv="refresh" content="0; url=weekly.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规划分析中心实习生周报 - 成俊晖（irisjhcheng）</title>
+<style>
+  :root{
+    --brand:#0052D9; --brand-bg:#E8F3FF; --text:#1D2129; --sub:#86909C;
+    --border:#E5E6EB; --bg:#F7F8FA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  .topbar{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .top-inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:32px}
+  .top-title{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;padding:12px 0}
+  .tabs{display:flex;gap:0}
+  .tab{padding:12px 20px;font-size:13px;font-weight:500;color:var(--sub);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap}
+  .tab:hover{color:var(--brand);background:var(--brand-bg)}
+  .tab.active{color:var(--brand);font-weight:600;border-bottom-color:var(--brand)}
+  .tab .new-dot{display:none;width:6px;height:6px;border-radius:50%;background:#D54941;margin-left:5px;vertical-align:middle}
+  .tab.active .new-dot, .tab:first-child .new-dot{display:inline-block}
+  iframe#week-frame{width:100%;height:calc(100vh - 49px);border:none;display:block}
+</style>
 </head>
 <body>
-<p>正在跳转… <a href="weekly.html">点这里</a></p>
+<div class="topbar">
+  <div class="top-inner">
+    <span class="top-title">📋 规划分析中心实习生周报</span>
+    <div class="tabs">
+      <button class="tab active" data-src="weekly-2026-07-20.html">7.20 - 7.24<span class="new-dot"></span></button>
+      <button class="tab" data-src="weekly-2026-07-13.html">7.13 - 7.17</button>
+    </div>
+  </div>
+</div>
+<iframe id="week-frame" src="weekly-2026-07-20.html"></iframe>
+
+<script>
+  const frame = document.getElementById('week-frame');
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      frame.src = tab.dataset.src;
+    });
+  });
+</script>
 </body>
 </html>
