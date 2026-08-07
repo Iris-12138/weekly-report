@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规划分析中心实习生周报-成俊晖（8.03-8.07）</title>
+<style>
+  :root{
+    --primary:#0052D9; --primary-light:#E8F3FF; --primary-soft:#366EF4;
+    --green:#00A870; --green-light:#E8F8F2; --orange:#ED7B2F; --orange-light:#FFF3E8;
+    --red:#D54941; --red-light:#FFECE8; --purple:#7B61FF; --purple-light:#F0EDFF;
+    --bg:#F7F8FA; --card:#FFFFFF; --text:#1D2129; --text-2:#4E5969; --text-3:#86909C;
+    --border:#E5E6EB; --border-soft:#F2F3F5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+  /* header */
+  .header{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;border-radius:16px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+  .header::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(255,255,255,.08);border-radius:50%}
+  .header::before{content:"";position:absolute;right:60px;bottom:-80px;width:160px;height:160px;background:rgba(255,255,255,.06);border-radius:50%}
+  .header h1{font-size:24px;font-weight:600;margin-bottom:10px;position:relative;z-index:1}
+  .header .sub{font-size:14px;opacity:.92;position:relative;z-index:1;line-height:1.6}
+  .header .meta{display:flex;gap:24px;margin-top:18px;font-size:13px;position:relative;z-index:1;flex-wrap:wrap}
+  .header .meta span{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+  /* 主线导航条 */
+  .thread{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;border-radius:14px;padding:22px 26px;margin-bottom:24px}
+  .thread .tl{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .thread-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .tf-node{flex:1;min-width:170px;background:#fff;border-radius:10px;padding:13px 15px;border:1px solid #D4E3FA;position:relative}
+  .tf-node .tf-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:7px}
+  .tf-node.past .tf-tag{background:var(--border-soft);color:var(--text-3)}
+  .tf-node.now .tf-tag{background:var(--primary-light);color:var(--primary)}
+  .tf-node.next .tf-tag{background:var(--green-light);color:var(--green)}
+  .tf-node .tf-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5}
+  .tf-node .tf-d{font-size:12px;color:var(--text-3);line-height:1.55}
+  .tf-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.tf-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.tf-node{min-width:100%}}
+  /* section */
+  .section{background:var(--card);border-radius:14px;padding:28px 32px;margin-bottom:20px;border:1px solid var(--border-soft)}
+  .section h2{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section h2 .num{width:26px;height:26px;background:var(--primary);color:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .section .desc{color:var(--text-3);font-size:13px;margin-bottom:20px;margin-left:36px}
+  .section .desc strong{color:var(--text-2)}
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--bg);border-radius:12px;padding:18px;border:1px solid var(--border-soft);position:relative;overflow:hidden}
+  .stat .label{font-size:13px;color:var(--text-3);margin-bottom:8px}
+  .stat .value{font-size:30px;font-weight:700;color:var(--primary);line-height:1}
+  .stat .unit{font-size:14px;color:var(--text-3);font-weight:400;margin-left:4px}
+  .stat .note{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.5}
+  .stat.green .value{color:var(--green)} .stat.orange .value{color:var(--orange)} .stat.purple .value{color:var(--purple)}
+  @media(max-width:760px){.stats{grid-template-columns:1fr}}
+  /* 头号成果卡 */
+  .hero-output{border-radius:14px;overflow:hidden;margin:8px 0 18px;border:1px solid #BBD6FF}
+  .ho-bar{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .ho-tag{display:inline-block;font-size:11px;font-weight:700;background:rgba(255,255,255,.25);padding:3px 10px;border-radius:8px;white-space:nowrap}
+  .ho-t{font-size:16px;font-weight:700;line-height:1.45}
+  .ho-body{background:linear-gradient(135deg,#F0F6FF,#F8FAFF);padding:18px 24px 20px}
+  .ho-d{font-size:13.5px;color:var(--text-2);line-height:1.78;margin-bottom:0}
+  .ho-d strong{color:var(--text);font-weight:700}
+  /* 核心工作卡 */
+  .work-card{background:var(--bg);border-radius:12px;border:1px solid var(--border-soft);margin-top:12px;overflow:hidden;transition:.2s}
+  .work-card>summary{cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:12px;list-style:none;background:#fff;transition:.15s}
+  .work-card>summary:hover{background:#FAFBFC}
+  .work-card>summary::-webkit-details-marker{display:none}
+  .work-card>summary::marker{display:none}
+  .wh-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--border-soft);flex-shrink:0}
+  .wh-info{flex:1;min-width:0;line-height:1.5}
+  .wh-t{font-size:14px;font-weight:600;color:var(--text)}
+  .wh-sum{font-size:12px;color:var(--text-3);margin-top:3px}
+  .wh-sum strong{color:var(--text-2);font-weight:600}
+  .wh-arrow{margin-left:auto;font-size:14px;color:var(--text-3);transition:transform .25s ease;flex-shrink:0}
+  .work-card[open] .wh-arrow{transform:rotate(180deg)}
+  .work-card[open]>summary{border-bottom:1px solid var(--border-soft)}
+  .work-card .work-body{padding:14px 18px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--bg)}
+  .work-step{padding:0 14px;position:relative;border-left:1px solid var(--border-soft)}
+  .work-step:first-child{border-left:none;padding-left:0}
+  .work-step .ws-k{font-size:11px;font-weight:600;color:var(--primary);margin-bottom:5px;letter-spacing:.5px}
+  .work-step .ws-v{font-size:12.5px;color:var(--text-2);line-height:1.65}
+  .work-step .ws-v strong{color:var(--text)}
+  .work-take{grid-column:1 / -1;margin-top:12px;padding:11px 14px;background:var(--primary-light);border-radius:0 8px 8px 0;border-left:3px solid var(--primary);font-size:12.5px;color:var(--text-2);line-height:1.7}
+  .work-take b{color:var(--primary)}
+  .work-link{grid-column:1 / -1;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-soft);text-align:right}
+  .work-link a{font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;padding:6px 12px;background:var(--primary-light);border-radius:6px;transition:.15s;display:inline-block}
+  .work-link a:hover{background:var(--primary);color:#fff}
+  @media(max-width:760px){.work-card .work-body{grid-template-columns:1fr;gap:12px}.work-step{border-left:none;padding:0;border-top:1px dashed var(--border-soft);padding-top:12px}.work-step:first-child{border-top:none;padding-top:0}}
+  /* insight box */
+  .insight{background:var(--primary-light);border-left:3px solid var(--primary);border-radius:8px;padding:16px 20px;margin-top:18px;font-size:14px;color:var(--text-2);line-height:1.75}
+  .insight strong{color:var(--primary)}
+  .insight.orange{background:var(--orange-light);border-color:var(--orange)} .insight.orange strong{color:var(--orange)}
+  .insight.green{background:var(--green-light);border-color:var(--green)} .insight.green strong{color:var(--green)}
+  /* 反思卡 */
+  .ref-card{background:var(--bg);border-radius:12px;padding:20px 22px;border:1px solid var(--border-soft);margin-top:12px}
+  .ref-card.highlight{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;position:relative}
+  .ref-card h4{font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;line-height:1.5}
+  .turn-body{margin-top:4px}
+  .turn-sub{font-size:13.5px;color:var(--text-2);line-height:1.8;margin-bottom:14px}
+  .turn-sub strong{color:var(--text)}
+  .turn-chain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .turn-card{flex:1;min-width:200px;background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+  .turn-card.mid{border-color:#9DC4FF;box-shadow:0 4px 16px rgba(0,82,217,.12)}
+  .turn-card .tc-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:8px;background:var(--border-soft);color:var(--text-3)}
+  .turn-card.mid .tc-tag{background:var(--primary-light);color:var(--primary)}
+  .turn-card.warn .tc-tag{background:var(--orange-light);color:var(--orange)}
+  .turn-card .tc-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.5}
+  .turn-card .tc-d{font-size:12px;color:var(--text-3);line-height:1.6}
+  .turn-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.turn-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.turn-card{min-width:100%}}
+  /* 认知小结 */
+  .cog{background:linear-gradient(135deg,#F0EDFF 0%,#F5F3FF 100%);border:1px solid #C9BEFF;border-radius:12px;padding:18px 22px;margin-top:16px}
+  .cog h5{font-size:14px;font-weight:600;color:#7B61FF;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .cog p{font-size:13.5px;color:var(--text-2);line-height:1.85}
+  .cog p strong{color:var(--text)}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  thead th{background:var(--bg);color:var(--text-2);font-weight:600;text-align:left;padding:11px 14px;border-bottom:2px solid var(--border);white-space:nowrap}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--border-soft);color:var(--text-2);vertical-align:top}
+  tbody tr:hover{background:var(--primary-light)}
+  .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11px;font-weight:500;white-space:nowrap}
+  .b-blue{background:var(--primary-light);color:var(--primary)} .b-green{background:var(--green-light);color:var(--green)}
+  .b-orange{background:var(--orange-light);color:var(--orange)} .b-purple{background:var(--purple-light);color:var(--purple)}
+  .b-gray{background:var(--border-soft);color:var(--text-3)} .b-red{background:var(--red-light);color:var(--red)}
+  /* details 通用 */
+  details.plain{margin-top:12px;border:1px solid var(--border-soft);border-radius:10px;overflow:hidden}
+  details.plain>summary{cursor:pointer;padding:14px 18px;font-size:14px;font-weight:600;color:var(--text);background:var(--bg);list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details.plain>summary::-webkit-details-marker{display:none}
+  details.plain>summary::after{content:"展开 ▾";font-size:12px;color:var(--primary);font-weight:500}
+  details.plain[open]>summary::after{content:"收起 ▴"}
+  .detail-body{padding:0 18px 8px}
+  .qa-item{padding:16px 0;border-bottom:1px dashed var(--border-soft)}
+  .qa-item:last-child{border-bottom:none}
+  .qa-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+  .qa-a{font-size:13px;color:var(--text-2);line-height:1.7}
+  /* next steps */
+  .next-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .next-item{display:flex;gap:14px;align-items:flex-start}
+  .next-item .n-num{width:28px;height:28px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .next-item .n-content{flex:1}
+  .n-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+  .n-desc{font-size:13px;color:var(--text-2);line-height:1.65}
+  .n-from{margin-top:8px;font-size:12.5px;color:var(--text-2);line-height:1.6;padding:8px 12px;background:var(--green-light);border-left:3px solid var(--green);border-radius:0 8px 8px 0}
+  .n-from .nf-label{font-weight:600;color:var(--green);margin-right:4px}
+  .n-from strong{color:var(--text)}
+  .n-src{display:inline-block;font-size:11px;font-weight:600;color:var(--text-3);background:var(--border-soft);padding:2px 9px;border-radius:8px;margin-bottom:8px}
+  .foot{text-align:center;font-size:12px;color:var(--text-3);margin-top:40px;padding-top:20px;border-top:1px solid var(--border-soft);line-height:1.8}
+  /* 未来方向卡 */
+  .ref-future{background:linear-gradient(135deg,#F0EDFF 0%,#E8F3FF 100%);border:1px solid #C9BEFF;border-radius:12px;padding:18px 22px;margin-top:16px}
+  .ref-future h5{font-size:14px;font-weight:600;color:#7B61FF;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .ref-future-item{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed rgba(123,97,255,.20)}
+  .ref-future-item:last-child{border-bottom:none;padding-bottom:0}
+  .ref-future-item:first-child{padding-top:0}
+  .ref-future-tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;flex-shrink:0;margin-top:1px;letter-spacing:.5px;min-width:38px;text-align:center}
+  .tag-short{background:#E8F8F2;color:#00A870}
+  .tag-mid{background:#FFF3E8;color:#ED7B2F}
+  .tag-long{background:#F0EDFF;color:#7B61FF}
+  .ref-future-c{flex:1;min-width:0}
+  .ref-future-t{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.5}
+  .ref-future-d{font-size:12.5px;color:var(--text-2);line-height:1.7}
+  .ref-future-d b{color:var(--text);font-weight:600}
+
+  /* hover */
+  .stat{transition:.2s}.stat:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  .work-card{transition:.25s}.work-card:hover{border-color:#BBD6FF;box-shadow:0 4px 16px rgba(0,82,217,.08)}
+  .ref-card{transition:.2s}.ref-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.06)}
+  .ref-card.highlight:hover{box-shadow:0 6px 22px rgba(0,82,217,.14);border-color:#9DC4FF}
+  .turn-card{transition:.2s}.turn-card:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.08)}
+  .turn-card.mid:hover{box-shadow:0 6px 20px rgba(0,82,217,.16)}
+  .tf-node{transition:.2s}.tf-node:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.06)}
+  .next-item{transition:.2s}.next-item:hover{transform:translateX(2px)}
+  .next-item:hover .n-num{background:var(--primary);color:#fff}
+  .cog{transition:.2s}.cog:hover{box-shadow:0 3px 12px rgba(123,97,255,.12)}
+  .ref-future-item{transition:.2s}.ref-future-item:hover{transform:translateX(2px)}
+  .hero-output{transition:.2s}.hero-output:hover{box-shadow:0 6px 22px rgba(0,82,217,.14)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- header -->
+  <div class="header">
+    <h1>规划分析中心实习生周报</h1>
+    <div class="sub">2026.08.03 - 08.07 · 从「答疑」到「方案沉淀」，把重复问题转成产品改进</div>
+    <div class="meta">
+      <span>👩‍🎓 irisjhcheng（成俊晖）</span>
+      <span>💼 规划分析中心</span>
+      <span>📖 需求方案 · 系统答疑 · demo测试</span>
+      <span>🧑‍🏫 支持导师：文睿老师</span>
+    </div>
+  </div>
+
+  <!-- 贯穿主线 -->
+  <div class="thread">
+    <div class="tl">🧭 本周主线：高频需求收敛成方案+测试辅助填报系统demo</div>
+    <div class="thread-flow">
+      <div class="tf-node past">
+        <span class="tf-tag">上周落点</span>
+        <div class="tf-t">梳理机器人场景清单，识别人工痛点</div>
+        <div class="tf-d">上周把跟催与兜底的痛点整理成机器人通知场景清单——认识到<strong>重复的人工动作应该由系统承接</strong>。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node now">
+        <span class="tf-tag">本周实战</span>
+        <div class="tf-t">需求方案交付 + demo 测试</div>
+        <div class="tf-d">把之前的高频需求收敛成<strong>《需求方案》</strong>并交付导师；同时测试<strong>人力规划辅助填报系统 demo</strong>，逐条挑出细节问题。日常答疑并行。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node next">
+        <span class="tf-tag">下周落点</span>
+        <div class="tf-t">方案落地 + demo 反馈跟进</div>
+        <div class="tf-d">推动方案对齐开发排期；继续测试demo并跟进。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. 本周关键产出 -->
+  <div class="section">
+    <h2><span class="num">1</span>本周关键产出</h2>
+
+    <!-- 头号成果 -->
+    <div class="hero-output">
+      <div class="ho-bar">
+        <span class="ho-t">《需求方案》——把高频的P0级需求收敛成开发能落地的方案</span>
+      </div>
+      <div class="ho-body">
+        <ul style="margin:0;padding-left:20px;line-height:1.9;color:var(--text-2);font-size:13.5px">
+          <li><strong style="color:var(--text)">功能一</strong>：统一 9 张导出/资源池表字段口径</li>
+          <li><strong style="color:var(--text)">功能二</strong>：操作记录全量展示</li>
+          <li><strong style="color:var(--text)">功能三</strong>：卡片口径对齐（拆清两处可分配余额 gap 根因）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">需求方案</div>
+        <div class="value">3<span class="unit">+4 项</span></div>
+        <div class="note">3 大功能 + 4 项其他：审批人展示、团队账号界面优化、免审批池随时开关、一键复用资源池额度</div>
+      </div>
+      <div class="stat orange">
+        <div class="label">demo 测试问题</div>
+        <div class="value">4<span class="unit"> 条</span></div>
+        <div class="note">草稿保留逻辑、冗余按钮、文案与交互一致性等细节</div>
+      </div>
+      <div class="stat green">
+        <div class="label">系统问题答疑</div>
+        <div class="value">10<span class="unit">+ 群</span></div>
+        <div class="note">问题集中在审批流理解、资源池管理、数据口径三类</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 核心工作 -->
+  <div class="section">
+    <h2><span class="num">2</span>核心工作展开</h2>
+    <p class="desc">本周三大任务：<strong>需求方案、demo 测试、日常答疑</strong>。点击每条标题可展开「背景 → 做了什么 → 结果」，重点卡片附一句我的判断。</p>
+
+    <!-- 2.1 需求方案 -->
+    <details class="work-card" open style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
+      <summary>
+        <div class="wh-ico" style="background:var(--primary);color:#fff">📐</div>
+        <div class="wh-info">
+          <div class="wh-t" style="color:var(--primary)">任务一：需求方案撰写与迭代 —— 本周最重要</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">日常答疑里反复出现的问题（模板字段口径不清、卡片数据对不上、操作记录查不全），靠一次次口头解释解决不了根本。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>提交需求文档初稿 → 导师反馈后聚焦三项核心，其余列清单</li>
+          <li>逐项补齐：现状截图 · 修改方案</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v"><strong>《需求方案》已交付</strong>，等导师终审后对齐开发排期。</div></div>
+        <div class="work-take">💡 <b>我的收获：</b>好的产品设计靠合理的分类和取舍——删掉操作记录中「调整方式」列比加字段更能减少 BP 理解成本，<strong>做减法有时比做加法更需要想清楚</strong>。</div>
+      </div>
+      <div class="work-link" style="border-top:none;padding:0 18px 16px;background:var(--bg);text-align:left">
+        <span style="font-size:12px;color:var(--text-3)">📎 交付物：</span><a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CN00j858NnRQmw4541?scode=AJEAIQdfAAoAcObXXFASoA2wZbAI0" target="_blank" style="font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;border-bottom:1px solid var(--primary-light)">《需求方案》 ↗</a>
+      </div>
+    </details>
+
+    <!-- 2.2 demo 测试 -->
+    <details class="work-card" style="border-color:#FBD4A8">
+      <summary>
+        <div class="wh-ico" style="background:var(--orange-light);color:var(--orange)">🧪</div>
+        <div class="wh-info">
+          <div class="wh-t">任务二：人力规划辅助填报系统 demo 测试</div>
+          <div class="wh-sum">上线前把关 · <strong>整体流程跑通，挑出细节bug</strong></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">在人力规划辅助填报系统上线前测评 demo，把体验卡点先摸清并优化。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>完整跑通不同预测方法 + 编辑流程</li>
+          <li>记录 <strong>4</strong> 条细节问题。
+            <ol style="margin:6px 0 0;padding-left:18px">
+            </ol>
+          </li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">整体可用，<strong>无明显流程缺陷</strong>，问题集中在交互一致性。已整理清单交导师与开发。</div></div>
+        <div class="work-take">💡 <b>我的判断：</b>测出来没大问题，<strong>恰恰说明主体设计靠谱</strong>——值得写下来的是影响使用体验的小问题。测试的价值不只是找问题，更是替真实用户提前踩一遍这些坎。</div>
+      </div>
+      <div class="work-link" style="border-top:none;padding:0 18px 16px;background:var(--bg);text-align:left">
+        <span style="font-size:12px;color:var(--text-3)">📎 交付物：</span><a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CNK1Z1yBW0Qy6HD471?scode=AJEAIQdfAAo1wMIY1gASoA2wZbAI0" target="_blank" style="font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;border-bottom:1px solid var(--primary-light)">《demo 测试问题清单》 ↗</a>
+      </div>
+    </details>
+
+    <!-- 2.3 系统答疑 -->
+    <details class="work-card">
+      <summary>
+        <div class="wh-ico">💬</div>
+        <div class="wh-info">
+          <div class="wh-t">任务三：系统问题答疑与操作支持</div>
+          <div class="wh-sum">10+ 群 · <strong>问题集中在审批流、资源池、数据口径三类</strong></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">BP/管理者的系统使用问题散落在 10+ 个群。</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>讲清审批人由权限中台自动抓取的逻辑</li>
+          <li>排查资源池负数根因（新入职同学额度未预分配）</li>
+          <li>澄清「额度管理员」与「组织负责人」概念区分</li>
+          <li>协助获取支付线全量数据交付</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">问题基本闭环；高频问题归为三类，作为需求方案与机器人话术的输入。</div></div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 3. 需求收集 -->
+  <div class="section">
+    <h2><span class="num">3</span>需求收集与待办管理</h2>
+    <details class="plain" open>
+      <summary>📋 已收集但尚未落地的需求</summary>
+      <div class="detail-body" style="padding:16px 4px 8px">
+        <table>
+          <thead><tr><th>需求</th><th>来源</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>审批人展示优化</td><td>多位BP反馈</td><td><span class="badge b-blue">已纳入方案</span></td></tr>
+            <tr><td>部门/中心/小组各层级查看全员名单 + 本月额度调整 7 月数据回填</td><td>zimoding（丁子墨）</td><td><span class="badge b-gray">已记录 · 待评估</span></td></tr>
+            <tr><td>跨组批量调配：集中导出/导入名单</td><td>jiangfanyu（于江帆）</td><td><span class="badge b-gray">已记录 · 待评估</span></td></tr>
+            <tr><td>子公司并入部门：组织架构按管理关系重排</td><td>echozyang（杨子玉）</td><td><span class="badge b-gray">已记录 · 待讨论</span></td></tr>
+            <tr><td>一键复用功能扩展：部门一级 / 资源池额度 / 跨中心</td><td>echozyang（杨子玉）</td><td><span class="badge b-gray">已记录 · 待评估</span></td></tr>
+            <tr><td>导出功能增加组织架构、通道族、员工类型等字段</td><td>olivaxu（徐若嘉）</td><td><span class="badge b-blue">已纳入方案</span></td></tr>
+            <tr><td>团队账号 token 消耗告警（剩余 30%、10% 时主动提醒）</td><td>rosarwang（王棋冉）</td><td><span class="badge b-gray">已记录 · 待评估</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+
+  <!-- 4. 反思 -->
+  <div class="section">
+    <h2><span class="num">4</span>卡点 · 尝试与反思</h2>
+
+    <div class="ref-card highlight">
+      <h4>🎯 归因——散落诉求背后的同一根线</h4>
+      <div class="turn-body">
+        <div class="turn-sub">不同 BG 提交了形式各异的需求——「导出加组织架构字段」「账单数据对不上」「跨组集中导出导入」等。若仅按字面记录，会形成数十条互不关联的清单，开发难以评估排期，方案无法落地。</div>
+        <div class="turn-chain">
+          <div class="turn-card warn">
+            <span class="tc-tag">卡点</span>
+            <div class="tc-t">需求多且杂乱，很分散</div>
+            <div class="tc-d">分散于不同 BG、不同部门、不同时间提交——表层看各说各的。</div>
+          </div>
+          <div class="turn-arrow">➜</div>
+          <div class="turn-card">
+            <span class="tc-tag">思考</span>
+            <div class="tc-t">先归因，再分类写入</div>
+            <div class="tc-d">细看根因是同一类：<strong>系统数据组织方式与 BP 实际管理方式存在偏差</strong>。按问题归类——数据结构（功能1）、审批规则（审批人展示规则优化）、数据口径存在差异（功能2+3）。</div>
+          </div>
+          <div class="turn-arrow">➜</div>
+          <div class="turn-card mid">
+            <span class="tc-tag">结果</span>
+            <div class="tc-t">✓ 从清单到带判断的方案</div>
+            <div class="tc-d">交付的是归因后的主次与取舍，给出我的解决方案。</div>
+          </div>
+        </div>
+        <div class="turn-sub" style="margin-top:14px"><strong>我的判断：</strong>在收集阶段就判断<strong>哪些是同一问题的不同表达、哪些是一次性特殊场景</strong>，多一步判断和思考。</div>
+
+        <div class="cog">
+          <h5>🧠 另一层认知</h5>
+          <p><strong>需求文档撰写中，最难的不是把所有的详细列出来、写得很全面，是判断哪些是无用信息。</strong>例如：操作记录表中的「调整方式」列与「调整类型」下的「月包追加/回收」语义重叠——删除它能有效减少信息冗余。做产品需求时需要结合对业务的理解，“少即是多”是不变的原则。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 下周计划 -->
+  <div class="section">
+    <h2><span class="num">5</span>下周工作计划</h2>
+    <p class="desc">主线：<strong>让本周的方案从文档走向落地</strong>。每条计划都标注了承接逻辑——为什么这件事值得现在做。</p>
+    <div class="next-list">
+      <div class="next-item">
+        <div class="n-num">1</div>
+        <div class="n-content">
+          <span class="n-src">重点任务</span>
+          <div class="n-title">跟进导师终审，推动三项方案落地并对齐开发排期</div>
+          <div class="n-desc">拿到导师对《需求方案》的反馈后，<strong>把方案转成开发可执行的排期</strong>，一直跟进直至完成。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>方案本周已基本成型，<strong>推动落地才是收集需求的意义</strong>。</div>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="n-num">2</div>
+        <div class="n-content">
+          <span class="n-src">承接 demo 测试</span>
+          <div class="n-title">跟进 demo 问题修复，思考 BP 减负方式</div>
+          <div class="n-desc">跟进本周测评问题清单的修复（草稿保留、冗余按钮、文案一致性等），改动后回归验证；<strong>同时继续测 demo，思考是否还有对 BP 来说更简单、进一步减负的交互方式</strong>。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>清单修好是基础，<strong>更重要的是从 BP 视角看能否再省略某些步骤</strong>，让新系统真正降低填报负担。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    规划分析中心实习生周报 · 成俊晖（irisjhcheng）· 2026.08.03 - 08.07<br>
+  </div>
+</div>
+</body>
+</html>
