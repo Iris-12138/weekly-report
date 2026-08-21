@@ -228,7 +228,7 @@
     <p class="desc">本周两条主线（辅助填报 + Token 验收）+ 一条支撑线。点击标题可展开「背景 → 做了什么 → 结果」，主线卡片附一条个人判断。</p>
 
     <!-- 2.1 主线一：辅助填报 -->
-    <details class="work-card" style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
+    <details class="work-card" open="" style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
       <summary style="cursor: pointer;">
         <div class="wh-ico" style="background:var(--primary);color:#fff">📝</div>
         <div class="wh-info">
@@ -281,7 +281,7 @@
     </details>
 
     <!-- 2.3 支撑线 -->
-    <details class="work-card" open="">
+    <details class="work-card">
       <summary style="cursor: pointer;">
         <div class="wh-ico">💬</div>
         <div class="wh-info">
@@ -359,9 +359,107 @@
 </div>
 
 <!-- ===== 编辑工具栏（本地改稿用：点「完成编辑」自动保存回源文件；点「导出HTML」导出干净部署版） ===== -->
+<div id="editBar" style="position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;align-items:flex-end;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+  <div id="editHint" style="display: none; background: rgb(29, 33, 41); color: rgb(255, 255, 255); font-size: 12px; line-height: 1.6; padding: 8px 12px; border-radius: 8px; max-width: 240px; box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 16px;">
+    直接点击文字即可修改。改完点「✅ 完成编辑」自动保存；全部定稿后再点「导出 HTML」拿部署版。
+  </div>
+  <div style="display:flex;gap:10px">
+    <button id="btnExport" style="display: inline-block; padding: 10px 16px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; background: rgb(0, 168, 112); color: rgb(255, 255, 255); font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: rgba(0, 168, 112, 0.35) 0px 4px 14px;">💾 导出 HTML</button>
+    <button id="btnEdit" style="padding: 10px 16px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; background: rgb(0, 82, 217); color: rgb(255, 255, 255); font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: rgba(0, 82, 217, 0.35) 0px 4px 14px;">✏️ 开启编辑</button>
+  </div>
+</div>
 
+<script>
+(function(){
+  var editing=false;
+  var btnEdit=document.getElementById('btnEdit');
+  var btnExport=document.getElementById('btnExport');
+  var hint=document.getElementById('editHint');
+  var wrap=document.querySelector('.wrap');
+  var FILE_NAME='weekly-2026-08-17.html';
 
+  function setEditable(on){
+    wrap.setAttribute('contenteditable', on ? 'true' : 'false');
+    wrap.style.outline='none';
+  }
 
+  function exitEdit(){
+    editing=false;
+    setEditable(false);
+    btnEdit.textContent='✏️ 开启编辑';
+    btnEdit.style.background='#0052D9';
+    hint.style.display='none';
+    document.querySelectorAll('details.work-card > summary').forEach(function(s){ s.style.cursor='pointer'; });
+  }
+
+  function enterEdit(){
+    editing=true;
+    setEditable(true);
+    btnEdit.textContent='✅ 完成编辑';
+    btnEdit.style.background='#ED7B2F';
+    btnExport.style.display='inline-block';
+    hint.style.display='block';
+    document.querySelectorAll('details.work-card > summary').forEach(function(s){ s.style.cursor='text'; });
+  }
+
+  btnEdit.addEventListener('click',function(){
+    if(editing){
+      exitEdit();
+      saveToServer();
+    }else{
+      enterEdit();
+    }
+  });
+
+  // 编辑态下阻止折叠卡因点击而展开/收起，方便改标题文字
+  document.querySelectorAll('details.work-card > summary').forEach(function(s){
+    s.addEventListener('click',function(e){ if(editing){ e.preventDefault(); } });
+  });
+
+  function buildHtml(clean){
+    var clone=document.documentElement.cloneNode(true);
+    if(clean){
+      var bar=clone.querySelector('#editBar'); if(bar) bar.remove();
+      clone.querySelectorAll('script').forEach(function(sc){ sc.remove(); });
+    }
+    clone.querySelectorAll('[contenteditable]').forEach(function(el){ el.removeAttribute('contenteditable'); });
+    return '<!DOCTYPE html>\n'+clone.outerHTML;
+  }
+
+  function flash(msg, isErr){
+    var t=document.createElement('div');
+    t.textContent=msg;
+    t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:'+(isErr?'#D54941':'#00A870')+';color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:10000;box-shadow:0 4px 16px rgba(0,0,0,.2);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.remove(); },1800);
+  }
+
+  function saveToServer(){
+    var html=buildHtml(false); // 保留工具栏与脚本，便于继续编辑
+    fetch('/save',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({file:FILE_NAME, html:html})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.ok){ flash('已保存 ✓'); }
+      else { flash('保存失败：'+(d && d.error || '未知错误'), true); }
+    }).catch(function(){
+      flash('保存失败：请确认是通过 localhost 打开的本页', true);
+    });
+  }
+
+  btnExport.addEventListener('click',function(){
+    if(editing){ exitEdit(); }
+    var html=buildHtml(true); // 干净版：去工具栏、去脚本
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=FILE_NAME;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+  });
+})();
+</script>
 
 
 </body></html>
