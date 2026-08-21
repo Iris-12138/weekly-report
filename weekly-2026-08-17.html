@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规划分析中心实习生周报-成俊晖（8.17-8.21）</title>
+<style>
+  :root{
+    --primary:#0052D9; --primary-light:#E8F3FF; --primary-soft:#366EF4;
+    --green:#00A870; --green-light:#E8F8F2; --orange:#ED7B2F; --orange-light:#FFF3E8;
+    --red:#D54941; --red-light:#FFECE8; --purple:#7B61FF; --purple-light:#F0EDFF;
+    --bg:#F7F8FA; --card:#FFFFFF; --text:#1D2129; --text-2:#4E5969; --text-3:#86909C;
+    --border:#E5E6EB; --border-soft:#F2F3F5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+  /* header */
+  .header{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;border-radius:16px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+  .header::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(255,255,255,.08);border-radius:50%}
+  .header::before{content:"";position:absolute;right:60px;bottom:-80px;width:160px;height:160px;background:rgba(255,255,255,.06);border-radius:50%}
+  .header h1{font-size:24px;font-weight:600;margin-bottom:10px;position:relative;z-index:1}
+  .header .sub{font-size:14px;opacity:.92;position:relative;z-index:1;line-height:1.6}
+  .header .meta{display:flex;gap:24px;margin-top:18px;font-size:13px;position:relative;z-index:1;flex-wrap:wrap}
+  .header .meta span{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+  /* 主线导航条 */
+  .thread{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;border-radius:14px;padding:22px 26px;margin-bottom:24px}
+  .thread .tl{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .thread-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .tf-node{flex:1;min-width:170px;background:#fff;border-radius:10px;padding:13px 15px;border:1px solid #D4E3FA;position:relative}
+  .tf-node .tf-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:7px}
+  .tf-node.past .tf-tag{background:var(--border-soft);color:var(--text-3)}
+  .tf-node.now .tf-tag{background:var(--primary-light);color:var(--primary)}
+  .tf-node.next .tf-tag{background:var(--green-light);color:var(--green)}
+  .tf-node .tf-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5}
+  .tf-node .tf-d{font-size:12px;color:var(--text-3);line-height:1.55}
+  .tf-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.tf-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.tf-node{min-width:100%}}
+  /* section */
+  .section{background:var(--card);border-radius:14px;padding:28px 32px;margin-bottom:20px;border:1px solid var(--border-soft)}
+  .section h2{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section h2 .num{width:26px;height:26px;background:var(--primary);color:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .section .desc{color:var(--text-3);font-size:13px;margin-bottom:20px;margin-left:36px}
+  .section .desc strong{color:var(--text-2)}
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--bg);border-radius:12px;padding:18px;border:1px solid var(--border-soft);position:relative;overflow:hidden}
+  .stat .label{font-size:13px;color:var(--text-3);margin-bottom:8px}
+  .stat .value{font-size:30px;font-weight:700;color:var(--primary);line-height:1}
+  .stat .unit{font-size:14px;color:var(--text-3);font-weight:400;margin-left:4px}
+  .stat .note{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.5}
+  .stat.green .value{color:var(--green)} .stat.orange .value{color:var(--orange)} .stat.purple .value{color:var(--purple)}
+  @media(max-width:760px){.stats{grid-template-columns:1fr}}
+  /* 头号成果卡 */
+  .hero-output{border-radius:14px;overflow:hidden;margin:8px 0 18px;border:1px solid #BBD6FF}
+  .ho-bar{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .ho-t{font-size:16px;font-weight:700;line-height:1.45}
+  .ho-body{background:linear-gradient(135deg,#F0F6FF,#F8FAFF);padding:18px 24px 20px}
+  .ho-d{font-size:13.5px;color:var(--text-2);line-height:1.78;margin-bottom:0}
+  .ho-d strong{color:var(--text);font-weight:700}
+  /* 核心工作卡 */
+  .work-card{background:var(--bg);border-radius:12px;border:1px solid var(--border-soft);margin-top:12px;overflow:hidden;transition:.2s}
+  .work-card>summary{cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:12px;list-style:none;background:#fff;transition:.15s}
+  .work-card>summary:hover{background:#FAFBFC}
+  .work-card>summary::-webkit-details-marker{display:none}
+  .work-card>summary::marker{display:none}
+  .wh-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--border-soft);flex-shrink:0}
+  .wh-info{flex:1;min-width:0;line-height:1.5}
+  .wh-t{font-size:14px;font-weight:600;color:var(--text)}
+  .wh-sum{font-size:12px;color:var(--text-3);margin-top:3px}
+  .wh-sum strong{color:var(--text-2);font-weight:600}
+  .wh-arrow{margin-left:auto;font-size:14px;color:var(--text-3);transition:transform .25s ease;flex-shrink:0}
+  .work-card[open] .wh-arrow{transform:rotate(180deg)}
+  .work-card[open]>summary{border-bottom:1px solid var(--border-soft)}
+  .work-card .work-body{padding:14px 18px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--bg)}
+  .work-step{padding:0 14px;position:relative;border-left:1px solid var(--border-soft)}
+  .work-step:first-child{border-left:none;padding-left:0}
+  .work-step .ws-k{font-size:11px;font-weight:600;color:var(--primary);margin-bottom:5px;letter-spacing:.5px}
+  .work-step .ws-v{font-size:12.5px;color:var(--text-2);line-height:1.65}
+  .work-step .ws-v strong{color:var(--text)}
+  .work-take{grid-column:1 / -1;margin-top:12px;padding:11px 14px;background:var(--primary-light);border-radius:0 8px 8px 0;border-left:3px solid var(--primary);font-size:12.5px;color:var(--text-2);line-height:1.7}
+  .work-take b{color:var(--primary)}
+  @media(max-width:760px){.work-card .work-body{grid-template-columns:1fr;gap:12px}.work-step{border-left:none;padding:0;border-top:1px dashed var(--border-soft);padding-top:12px}.work-step:first-child{border-top:none;padding-top:0}}
+  /* insight box */
+  .insight{background:var(--primary-light);border-left:3px solid var(--primary);border-radius:8px;padding:16px 20px;margin-top:18px;font-size:14px;color:var(--text-2);line-height:1.75}
+  .insight strong{color:var(--primary)}
+  .insight.orange{background:var(--orange-light);border-color:var(--orange)} .insight.orange strong{color:var(--orange)}
+  .insight.green{background:var(--green-light);border-color:var(--green)} .insight.green strong{color:var(--green)}
+  /* 反思卡 */
+  .ref-card{background:var(--bg);border-radius:12px;padding:20px 22px;border:1px solid var(--border-soft);margin-top:12px}
+  .ref-card.highlight{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;position:relative}
+  .ref-card h4{font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;line-height:1.5}
+  .turn-body{margin-top:4px}
+  .turn-sub{font-size:13.5px;color:var(--text-2);line-height:1.8;margin-bottom:14px}
+  .turn-sub strong{color:var(--text)}
+  .turn-chain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .turn-card{flex:1;min-width:200px;background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+  .turn-card.mid{border-color:#9DC4FF;box-shadow:0 4px 16px rgba(0,82,217,.12)}
+  .turn-card .tc-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:8px;background:var(--border-soft);color:var(--text-3)}
+  .turn-card.mid .tc-tag{background:var(--primary-light);color:var(--primary)}
+  .turn-card.warn .tc-tag{background:var(--orange-light);color:var(--orange)}
+  .turn-card .tc-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.5}
+  .turn-card .tc-d{font-size:12px;color:var(--text-3);line-height:1.6}
+  .turn-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.turn-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.turn-card{min-width:100%}}
+  /* 认知小结 */
+  .cog{background:linear-gradient(135deg,#F0EDFF 0%,#F5F3FF 100%);border:1px solid #C9BEFF;border-radius:12px;padding:18px 22px;margin-top:16px}
+  .cog h5{font-size:14px;font-weight:600;color:#7B61FF;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .cog p{font-size:13.5px;color:var(--text-2);line-height:1.85}
+  .cog p strong{color:var(--text)}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  thead th{background:var(--bg);color:var(--text-2);font-weight:600;text-align:left;padding:11px 14px;border-bottom:2px solid var(--border);white-space:nowrap}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--border-soft);color:var(--text-2);vertical-align:top}
+  tbody tr:hover{background:var(--primary-light)}
+  .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11px;font-weight:500;white-space:nowrap}
+  .b-blue{background:var(--primary-light);color:var(--primary)} .b-green{background:var(--green-light);color:var(--green)}
+  .b-orange{background:var(--orange-light);color:var(--orange)} .b-purple{background:var(--purple-light);color:var(--purple)}
+  .b-gray{background:var(--border-soft);color:var(--text-3)} .b-red{background:var(--red-light);color:var(--red)}
+  /* next steps */
+  .next-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .next-item{display:flex;gap:14px;align-items:flex-start}
+  .next-item .n-num{width:28px;height:28px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .next-item .n-content{flex:1}
+  .n-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+  .n-desc{font-size:13px;color:var(--text-2);line-height:1.65}
+  .n-from{margin-top:8px;font-size:12.5px;color:var(--text-2);line-height:1.6;padding:8px 12px;background:var(--green-light);border-left:3px solid var(--green);border-radius:0 8px 8px 0}
+  .n-from .nf-label{font-weight:600;color:var(--green);margin-right:4px}
+  .n-from strong{color:var(--text)}
+  .n-src{display:inline-block;font-size:11px;font-weight:600;color:var(--text-3);background:var(--border-soft);padding:2px 9px;border-radius:8px;margin-bottom:8px}
+  .foot{text-align:center;font-size:12px;color:var(--text-3);margin-top:40px;padding-top:20px;border-top:1px solid var(--border-soft);line-height:1.8}
+  /* hover */
+  .stat{transition:.2s}.stat:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  .work-card{transition:.25s}.work-card:hover{border-color:#BBD6FF;box-shadow:0 4px 16px rgba(0,82,217,.08)}
+  .ref-card{transition:.2s}.ref-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.06)}
+  .ref-card.highlight:hover{box-shadow:0 6px 22px rgba(0,82,217,.14);border-color:#9DC4FF}
+  .turn-card{transition:.2s}.turn-card:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.08)}
+  .turn-card.mid:hover{box-shadow:0 6px 20px rgba(0,82,217,.16)}
+  .tf-node{transition:.2s}.tf-node:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.06)}
+  .next-item{transition:.2s}.next-item:hover{transform:translateX(2px)}
+  .next-item:hover .n-num{background:var(--primary);color:#fff}
+  .cog{transition:.2s}.cog:hover{box-shadow:0 3px 12px rgba(123,97,255,.12)}
+  .hero-output{transition:.2s}.hero-output:hover{box-shadow:0 6px 22px rgba(0,82,217,.14)}
+</style>
+</head>
+<body>
+<div class="wrap" style="outline: none;">
+
+  <!-- header -->
+  <div class="header">
+    <h1>规划分析中心实习生周报</h1>
+    <div class="sub">2026.08.17 - 08.21 · 同步测试 Token 系统与辅助填报系统的功能更新</div>
+    <div class="meta">
+      <span>👩‍🎓 irisjhcheng（成俊晖）</span>
+      <span>💼 规划分析中心</span>
+      <span>📖 双系统验收 · 异常归因 · 系统答疑</span>
+      <span>🧑‍🏫 支持导师：文睿老师</span>
+    </div>
+  </div>
+
+  <!-- 贯穿主线 -->
+  <div class="thread">
+    <div class="tl">🧭 本周主线：辅助填报系统修改点验证通过 + Token 额度划拨新功能验收</div>
+    <div class="thread-flow">
+      <div class="tf-node past">
+        <span class="tf-tag">上周成果</span>
+        <div class="tf-t">辅助填报系统差异清单已交付</div>
+        <div class="tf-d">上周以 Demo 为基准逐项比对，产出《细节核对》交开发分批修复。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node now">
+        <span class="tf-tag">本周实战</span>
+        <div class="tf-t">辅助填报修改点验证通过 + Token 新功能全场景测试</div>
+        <div class="tf-d">辅助填报从差异闭环走到修改点验证一次性通过，并转入数据合理性核查；Token 额度划拨完成全场景测试。并行处理多起额度异常与操作记录答疑。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node next">
+        <span class="tf-tag">下周方向</span>
+        <div class="tf-t">辅助填报正式上线</div>
+        <div class="tf-d">人力规划辅助填报系统下周正式投入使用，我将以运营角色接手答疑、操作指引与异常跟进等情况。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. 本周关键产出 -->
+  <div class="section">
+    <h2><span class="num">1</span>本周关键产出</h2>
+
+    <!-- 头号成果 -->
+    <div class="hero-output">
+      <div class="ho-bar">
+        <span class="ho-t">双系统同步进入上线前验收——辅助填报修改点验证通过，Token 新功能完成全场景测试</span>
+      </div>
+      <div class="ho-body">
+        <p class="ho-d" style="margin-bottom:10px">本周 Token 系统与辅助填报系统同步进入上线前验收：</p>
+        <ul style="margin:0;padding-left:20px;font-size:13px;color:var(--text-2);line-height:1.85">
+          <li><strong>辅助填报系统</strong>：《细节核对》差异点全部修复确认；周四参加验收对齐会；周五逐一验证后<strong>所有修改点都闭环</strong>，随即转入 3 个部门的测试数据合理性核查</li>
+          <li><strong>Token系统</strong>：额度划拨按<strong>组织--&gt;组织、组织<strong>--&gt;</strong>员工、员工<strong>--&gt;</strong>组织</strong>等组合全量测试；产出《优化清单》推动研发逐项修复</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">系统验收 · 交付文档</div>
+        <div class="value">2<span class="unit"> 份</span></div>
+        <div class="note">《Token 8月新功能优化清单》推动研发修复；辅助填报《细节核对》gap 点全部修复确认</div>
+      </div>
+      <div class="stat orange">
+        <div class="label">额度异常 / 答疑处理</div>
+        <div class="value">10+<span class="unit"> 起</span></div>
+        <div class="note">TEG、Robotics X 等组织调整额度异常；操作记录歧义、AI 探索基金、批量改所有人等日常答疑</div>
+      </div>
+      <div class="stat purple">
+        <div class="label">系统问题优化修复</div>
+        <div class="value">✓<span class="unit">全部通过</span></div>
+        <div class="note">两个系统测试下来的差异点逐条验证通过</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 核心工作 -->
+  <div class="section">
+    <h2><span class="num">2</span>核心工作展开</h2>
+    <p class="desc">本周两条主线（辅助填报 + Token 验收）+ 一条支撑线。点击标题可展开「背景 → 做了什么 → 结果」，主线卡片附一条个人判断。</p>
+
+    <!-- 2.1 主线一：辅助填报 -->
+    <details class="work-card" style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico" style="background:var(--primary);color:#fff">📝</div>
+        <div class="wh-info">
+          <div class="wh-t" style="color:var(--primary)">主线一：辅助填报系统——从差异闭环到修改点验证、数据核查</div>
+          <div class="wh-sum">差异点全部修复 → <strong>修改点验证通过</strong> → 转入数据合理性核查</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">承接上周《细节核对》差异清单，本周推进开发修复，并进入上线前验收</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>跟进 UI 差异：向开发反馈剩余未修复点，推动确定修改方案</li>
+          <li>确认测试环境与 Demo 的 gap 点全部修复</li>
+          <li>参加验收对齐会，会后整理需修改点清单，对齐辞退措辞分类、校验精度、实际数口径等业务规则</li>
+          <li>跟进开发逐项修复并<strong>回测确认</strong>，修改点全部通过</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">修改点全部修复并回测确认，验收通过，转入数据合理性核查。</div></div>
+        <div class="work-take">💡 <b>我的判断：</b>修改点一次性通过，说明前期《细节核对》对差异的描述准确，开发与测试侧对齐充分；<strong>数据合理性是否成立，是验收的下一层——也是从呈现层向数据层的延伸。</strong></div>
+        <div class="work-link" style="border-top:none;padding:0 18px 16px;background:var(--bg);text-align:left">
+          <span style="font-size:12px;color:var(--text-3)">📎 交付物：</span>
+          <a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CNMCxiop9BQZCxp30A?scode=AJEAIQdfAAowSAKBL1ASoA2wZbAI0" target="_blank" style="font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;border-bottom:1px solid var(--primary-light);white-space:nowrap">《辅助填报系统+AIToken系统对齐会议》↗</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2.2 主线二：Token -->
+    <details class="work-card">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico" style="background:var(--purple-light);color:var(--purple)">🧪</div>
+        <div class="wh-info">
+          <div class="wh-t">主线二：Token 系统——8 月新功能全场景验收</div>
+          <div class="wh-sum">额度划拨分配逻辑 · <strong>回归测试与问题跟进</strong></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">Token 系统 8 月额度划拨新功能进入测试阶段，目标上线</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>按<strong>组织<strong style="color: rgb(78, 89, 105); font-size: 13px; background-color: rgb(255, 255, 255);">--&gt;</strong>组织、组织<strong style="color: rgb(78, 89, 105); font-size: 13px; background-color: rgb(255, 255, 255);">--&gt;</strong>员工、员工<strong style="color: rgb(78, 89, 105); font-size: 13px; background-color: rgb(255, 255, 255);">--&gt;</strong>组织</strong>等组合全量测试，核对操作记录展示、金额符号、排序逻辑等等</li>
+          <li>产出《Token 系统 8 月新功能优化清单》，经导师确认后对接研发逐项修复</li>
+          <li>跟进修复并<strong>回测确认</strong>，清单内优化点均已修复</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">优化点全部修复并回测确认</div></div>
+        <div class="work-take">💡 <b>我的判断：</b>额度划拨的验收，重点不在操作流程能否走通，而在<strong>每种组合下计算规则是否正确</strong>——逐组合穷举，更重要需要校验的是计算的规则和逻辑。</div>
+        <div class="work-link" style="border-top:none;padding:0 18px 16px;background:var(--bg);text-align:left">
+          <span style="font-size:12px;color:var(--text-3)">📎 交付物：</span>
+          <a href="https://doc.weixin.qq.com/doc/w3_ASoA2wZbAI0CNucf7P7N3SwiphZzV?scode=AJEAIQdfAAoQMnfrfyASoA2wZbAI0" target="_blank" style="font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;border-bottom:1px solid var(--primary-light);white-space:nowrap">《Token系统8月新功能优化清单》↗</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2.3 支撑线 -->
+    <details class="work-card" open="">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico">💬</div>
+        <div class="wh-info">
+          <div class="wh-t">支撑线：额度异常归因 + 日常答疑</div>
+          <div class="wh-sum"><b>组架变化 · 操作记录口径、AI探索基金规则、导入流程等答疑</b></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">额度异常与日常答疑贯穿全周</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>团队账号额度突降：定位为该账号<strong>从未接入系统</strong>，旧默认额度切换后失效，导出全量清单供 review</li>
+          <li>Robotics X 组架变动致资源池扣穿：指引手动恢复，解释额度已回流至中心资源池</li>
+          <li>答疑：操作记录 +/− 口径（个人 vs 资源池）、AI 探索基金底线、批量修改、月度额度调整导入流程等</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">异常明确根因并闭环处置；高频答疑中浮现的口径问题，沉淀为产品侧优化（本周随新功能修复）。</div></div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 3. 反思 -->
+  <div class="section">
+    <h2><span class="num">3</span>卡点 · 尝试与反思</h2>
+
+    <div class="ref-card highlight">
+      <h4>🎯 验收的价值，在穿透"功能跑通"，核背后的逻辑对不对</h4>
+      <div class="turn-body">
+        <div class="turn-sub" style="margin-bottom:12px">这周测试两个系统，最深的体会是：功能"跑通"只是表层，<strong>背后的逻辑对不对才是关键</strong>。两个具体例子——</div>
+        <div class="turn-chain">
+          <div class="turn-card">
+            <span class="tc-tag">额度划拨 · 核账</span>
+            <div class="tc-t">不只是看"划不划得过去"</div>
+            <div class="tc-d">划出/划入金额对得上、记录的符号与排序对、各组合一致等等——账对得上，逻辑才对得上。</div>
+          </div>
+          <div class="turn-card mid">
+            <span class="tc-tag">辅助填报 · 核口径</span>
+            <div class="tc-t">不只是看"字段改没改"</div>
+            <div class="tc-d">编制 vs 在岗、校验 100%、各种分类等等——每个字段背后都是人力规划口径。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 下周计划 -->
+  <div class="section">
+    <h2><span class="num">4</span>下周工作计划</h2>
+    <p class="desc">主线：<strong>辅助填报正式投入使用并转入运营，同步推进答辩准备</strong>。每条计划标注承接逻辑。</p>
+    <div class="next-list">
+      <div class="next-item">
+        <div class="n-num">1</div>
+        <div class="n-content">
+          <span class="n-src">重点任务</span>
+          <div class="n-title">辅助填报系统正式投入使用，接手运营答疑与操作指引</div>
+          <div class="n-desc">辅助填报正式上线后，以运营角色接手答疑、操作指引、异常跟进，把验收阶段积累的差异点和操作经验转化为日常支持口径。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span><strong>验收的人最清楚哪些地方容易踩坑</strong>——上线第一波答疑交给我，反馈也能最快回到产品和研发手里。</div>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="n-num">2</div>
+        <div class="n-content">
+          <span class="n-src">答辩准备</span>
+          <div class="n-title">梳理答疑记录，探索答辩用的 AI 运营提效工具</div>
+          <div class="n-desc">把这段时间的答疑沉淀为可自动迭代的 AI 机器人，把之前的机器人升级，作为运营助手提效成果。</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>把一线积累的问题沉淀成可复用的工具，<strong>可以有效为团队运营提高效率</strong>。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    规划分析中心实习生周报 · 成俊晖（irisjhcheng）· 2026.08.17 - 08.21<br>
+  </div>
+</div>
+
+<!-- ===== 编辑工具栏（本地改稿用：点「完成编辑」自动保存回源文件；点「导出HTML」导出干净部署版） ===== -->
+
+
+
+
+
+</body></html>
