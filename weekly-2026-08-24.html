@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规划分析中心实习生周报-成俊晖（8.24-8.28）</title>
+<style>
+  :root{
+    --primary:#0052D9; --primary-light:#E8F3FF; --primary-soft:#366EF4;
+    --green:#00A870; --green-light:#E8F8F2; --orange:#ED7B2F; --orange-light:#FFF3E8;
+    --red:#D54941; --red-light:#FFECE8; --purple:#7B61FF; --purple-light:#F0EDFF;
+    --bg:#F7F8FA; --card:#FFFFFF; --text:#1D2129; --text-2:#4E5969; --text-3:#86909C;
+    --border:#E5E6EB; --border-soft:#F2F3F5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+  /* header */
+  .header{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;border-radius:16px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+  .header::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(255,255,255,.08);border-radius:50%}
+  .header::before{content:"";position:absolute;right:60px;bottom:-80px;width:160px;height:160px;background:rgba(255,255,255,.06);border-radius:50%}
+  .header h1{font-size:24px;font-weight:600;margin-bottom:10px;position:relative;z-index:1}
+  .header .sub{font-size:14px;opacity:.92;position:relative;z-index:1;line-height:1.6}
+  .header .meta{display:flex;gap:24px;margin-top:18px;font-size:13px;position:relative;z-index:1;flex-wrap:wrap}
+  .header .meta span{background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+  /* 主线导航条 */
+  .thread{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;border-radius:14px;padding:22px 26px;margin-bottom:24px}
+  .thread .tl{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .thread-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .tf-node{flex:1;min-width:170px;background:#fff;border-radius:10px;padding:13px 15px;border:1px solid #D4E3FA;position:relative}
+  .tf-node .tf-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:7px}
+  .tf-node.past .tf-tag{background:var(--border-soft);color:var(--text-3)}
+  .tf-node.now .tf-tag{background:var(--primary-light);color:var(--primary)}
+  .tf-node.next .tf-tag{background:var(--green-light);color:var(--green)}
+  .tf-node .tf-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5}
+  .tf-node .tf-d{font-size:12px;color:var(--text-3);line-height:1.55}
+  .tf-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.tf-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.tf-node{min-width:100%}}
+  /* section */
+  .section{background:var(--card);border-radius:14px;padding:28px 32px;margin-bottom:20px;border:1px solid var(--border-soft)}
+  .section h2{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section h2 .num{width:26px;height:26px;background:var(--primary);color:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .section .desc{color:var(--text-3);font-size:13px;margin-bottom:20px;margin-left:36px}
+  .section .desc strong{color:var(--text-2)}
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--bg);border-radius:12px;padding:18px;border:1px solid var(--border-soft);position:relative;overflow:hidden}
+  .stat .label{font-size:13px;color:var(--text-3);margin-bottom:8px}
+  .stat .value{font-size:30px;font-weight:700;color:var(--primary);line-height:1}
+  .stat .unit{font-size:14px;color:var(--text-3);font-weight:400;margin-left:4px}
+  .stat .note{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.5}
+  .stat.green .value{color:var(--green)} .stat.orange .value{color:var(--orange)} .stat.purple .value{color:var(--purple)}
+  @media(max-width:760px){.stats{grid-template-columns:1fr}}
+  /* 头号成果卡 */
+  .hero-output{border-radius:14px;overflow:hidden;margin:8px 0 18px;border:1px solid #BBD6FF}
+  .ho-bar{background:linear-gradient(135deg,#0052D9 0%,#366EF4 100%);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .ho-t{font-size:16px;font-weight:700;line-height:1.45}
+  .ho-body{background:linear-gradient(135deg,#F0F6FF,#F8FAFF);padding:18px 24px 20px}
+  .ho-d{font-size:13.5px;color:var(--text-2);line-height:1.78;margin-bottom:0}
+  .ho-d strong{color:var(--text);font-weight:700}
+  /* 核心工作卡 */
+  .work-card{background:var(--bg);border-radius:12px;border:1px solid var(--border-soft);margin-top:12px;overflow:hidden;transition:.2s}
+  .work-card>summary{cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:12px;list-style:none;background:#fff;transition:.15s}
+  .work-card>summary:hover{background:#FAFBFC}
+  .work-card>summary::-webkit-details-marker{display:none}
+  .work-card>summary::marker{display:none}
+  .wh-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--border-soft);flex-shrink:0}
+  .wh-info{flex:1;min-width:0;line-height:1.5}
+  .wh-t{font-size:14px;font-weight:600;color:var(--text)}
+  .wh-sum{font-size:12px;color:var(--text-3);margin-top:3px}
+  .wh-sum strong{color:var(--text-2);font-weight:600}
+  .wh-arrow{margin-left:auto;font-size:14px;color:var(--text-3);transition:transform .25s ease;flex-shrink:0}
+  .work-card[open] .wh-arrow{transform:rotate(180deg)}
+  .work-card[open]>summary{border-bottom:1px solid var(--border-soft)}
+  .work-card .work-body{padding:14px 18px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--bg)}
+  .work-step{padding:0 14px;position:relative;border-left:1px solid var(--border-soft)}
+  .work-step:first-child{border-left:none;padding-left:0}
+  .work-step .ws-k{font-size:11px;font-weight:600;color:var(--primary);margin-bottom:5px;letter-spacing:.5px}
+  .work-step .ws-v{font-size:12.5px;color:var(--text-2);line-height:1.65}
+  .work-step .ws-v strong{color:var(--text)}
+  .work-take{grid-column:1 / -1;margin-top:12px;padding:11px 14px;background:var(--primary-light);border-radius:0 8px 8px 0;border-left:3px solid var(--primary);font-size:12.5px;color:var(--text-2);line-height:1.7}
+  .work-take b{color:var(--primary)}
+  .work-link{padding:0 18px 16px;background:var(--bg);text-align:left}
+  @media(max-width:760px){.work-card .work-body{grid-template-columns:1fr;gap:12px}.work-step{border-left:none;padding:0;border-top:1px dashed var(--border-soft);padding-top:12px}.work-step:first-child{border-top:none;padding-top:0}}
+  /* insight box */
+  .insight{background:var(--primary-light);border-left:3px solid var(--primary);border-radius:8px;padding:16px 20px;margin-top:18px;font-size:14px;color:var(--text-2);line-height:1.75}
+  .insight strong{color:var(--primary)}
+  .insight.orange{background:var(--orange-light);border-color:var(--orange)} .insight.orange strong{color:var(--orange)}
+  .insight.green{background:var(--green-light);border-color:var(--green)} .insight.green strong{color:var(--green)}
+  /* 反思卡 */
+  .ref-card{background:var(--bg);border-radius:12px;padding:20px 22px;border:1px solid var(--border-soft);margin-top:12px}
+  .ref-card.highlight{background:linear-gradient(135deg,#F0F6FF 0%,#E8F3FF 100%);border:1px solid #BBD6FF;position:relative}
+  .ref-card h4{font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;line-height:1.5}
+  .turn-body{margin-top:4px}
+  .turn-sub{font-size:13.5px;color:var(--text-2);line-height:1.8;margin-bottom:14px}
+  .turn-sub strong{color:var(--text)}
+  .turn-chain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .turn-card{flex:1;min-width:200px;background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+  .turn-card.mid{border-color:#9DC4FF;box-shadow:0 4px 16px rgba(0,82,217,.12)}
+  .turn-card .tc-tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:8px;background:var(--border-soft);color:var(--text-3)}
+  .turn-card.mid .tc-tag{background:var(--primary-light);color:var(--primary)}
+  .turn-card.warn .tc-tag{background:var(--orange-light);color:var(--orange)}
+  .turn-card .tc-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.5}
+  .turn-card .tc-d{font-size:12px;color:var(--text-3);line-height:1.6}
+  .turn-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;color:var(--primary);font-size:18px;font-weight:700}
+  @media(max-width:760px){.turn-arrow{transform:rotate(90deg);padding:6px 0;width:100%}.turn-card{min-width:100%}}
+  /* 认知小结 */
+  .cog{background:linear-gradient(135deg,#F0EDFF 0%,#F5F3FF 100%);border:1px solid #C9BEFF;border-radius:12px;padding:18px 22px;margin-top:16px}
+  .cog h5{font-size:14px;font-weight:600;color:#7B61FF;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .cog p{font-size:13.5px;color:var(--text-2);line-height:1.85}
+  .cog p strong{color:var(--text)}
+  /* next steps */
+  .next-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .next-item{display:flex;gap:14px;align-items:flex-start}
+  .next-item .n-num{width:28px;height:28px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .next-item .n-content{flex:1}
+  .n-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+  .n-desc{font-size:13px;color:var(--text-2);line-height:1.65}
+  .n-from{margin-top:8px;font-size:12.5px;color:var(--text-2);line-height:1.6;padding:8px 12px;background:var(--green-light);border-left:3px solid var(--green);border-radius:0 8px 8px 0}
+  .n-from .nf-label{font-weight:600;color:var(--green);margin-right:4px}
+  .n-from strong{color:var(--text)}
+  .n-src{display:inline-block;font-size:11px;font-weight:600;color:var(--text-3);background:var(--border-soft);padding:2px 9px;border-radius:8px;margin-bottom:8px}
+  .foot{text-align:center;font-size:12px;color:var(--text-3);margin-top:40px;padding-top:20px;border-top:1px solid var(--border-soft);line-height:1.8}
+  /* hover */
+  .stat{transition:.2s}.stat:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  .work-card{transition:.25s}.work-card:hover{border-color:#BBD6FF;box-shadow:0 4px 16px rgba(0,82,217,.08)}
+  .ref-card{transition:.2s}.ref-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.06)}
+  .ref-card.highlight:hover{box-shadow:0 6px 22px rgba(0,82,217,.14);border-color:#9DC4FF}
+  .turn-card{transition:.2s}.turn-card:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.08)}
+  .turn-card.mid:hover{box-shadow:0 6px 20px rgba(0,82,217,.16)}
+  .tf-node{transition:.2s}.tf-node:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.06)}
+  .next-item{transition:.2s}.next-item:hover{transform:translateX(2px)}
+  .next-item:hover .n-num{background:var(--primary);color:#fff}
+  .cog{transition:.2s}.cog:hover{box-shadow:0 3px 12px rgba(123,97,255,.12)}
+  .hero-output{transition:.2s}.hero-output:hover{box-shadow:0 6px 22px rgba(0,82,217,.14)}
+</style>
+</head>
+<body>
+<div class="wrap" style="outline: none;">
+
+  <!-- header -->
+  <div class="header">
+    <h1>规划分析中心实习生周报</h1>
+    <div class="sub">2026.08.24 - 08.28 · 额度划拨完成验收放行，机器人首次向全体 BP 推送通知</div>
+    <div class="meta">
+      <span>👩‍🎓 irisjhcheng（成俊晖）</span>
+      <span>💼 规划分析中心</span>
+      <span>📖 验收边界 · 全量推送 · 系统规则答疑</span>
+      <span>🧑‍🏫 支持导师：文睿老师</span>
+    </div>
+  </div>
+
+  <!-- 贯穿主线 -->
+  <div class="thread">
+    <div class="tl">🧭 本周主线：划拨功能定下验收边界并放行 + 机器人通知首次覆盖 308 位 BP</div>
+    <div class="thread-flow">
+      <div class="tf-node past">
+        <span class="tf-tag">上周成果</span>
+        <div class="tf-t">两系统进入上线前验收</div>
+        <div class="tf-d">辅助填报修改点验证通过；额度划拨完成首轮测试，优化清单交研发修复。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node now">
+        <span class="tf-tag">本周实战</span>
+        <div class="tf-t">划拨按账目逻辑定验收边界 + 通知全量推送</div>
+        <div class="tf-d">优化发版后对齐账目规则、按场景矩阵实测放行；周四完成 308 位 BP 填报提醒推送，并建好兜底方案。</div>
+      </div>
+      <div class="tf-arrow">➜</div>
+      <div class="tf-node next">
+        <span class="tf-tag">下周方向</span>
+        <div class="tf-t">9 月窗口 8.31 截止，执行二次提醒并承接答疑</div>
+        <div class="tf-d">窗口关闭当天导出未填报部门名单二次提醒；推进辅助填报用户行为分析。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. 本周关键产出 -->
+  <div class="section">
+    <h2><span class="num">1</span>本周关键产出</h2>
+
+    <!-- 头号成果 -->
+    <div class="hero-output">
+      <div class="ho-bar">
+        <span class="ho-t">额度划拨按账目逻辑定下验收边界；机器人通知首次覆盖 308 位 BP</span>
+      </div>
+      <div class="ho-body">
+        <ul style="margin:0;padding-left:20px;font-size:13px;color:var(--text-2);line-height:1.85">
+          <li><strong>额度划拨</strong>：优化发版后，先对齐账目规则、再按场景矩阵实测，<strong>确认后放行</strong></li>
+          <li><strong>机器人通知</strong>：完成 308 位 BP 的填报提醒推送，并建好 8.31 二次提醒兜底</li>
+          <li><strong>9 月配置窗口</strong>：8.25 启动，同步 8 月四项更新</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">划拨优化 · 提测到发版</div>
+        <div class="value">4<span class="unit"> 项 / 1 天</span></div>
+        <div class="note">周一提、周二发版；验证阶段按场景矩阵穷举组织间年包划拨组合</div>
+      </div>
+      <div class="stat orange">
+        <div class="label">机器人通知覆盖</div>
+        <div class="value">308<span class="unit"> 位 BP</span></div>
+        <div class="note">从权限表导出 HRBP 列去重；先测后发</div>
+      </div>
+      <div class="stat purple">
+        <div class="label">权限配置 · 个案归因</div>
+        <div class="value">4<span class="unit"> 批</span></div>
+        <div class="note">第 36/38/39/40 批增补与剔除；个案定位到规则层成因</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 核心工作 -->
+  <div class="section">
+    <h2><span class="num">2</span>核心工作展开</h2>
+    <p class="desc">两条主线 + 一条支撑线，展开可见「背景 → 做了什么 → 结果」，每条附一条判断。</p>
+
+    <!-- 2.1 主线一：划拨 -->
+    <details class="work-card" open="" style="border:1.5px solid #9DC4FF;box-shadow:0 6px 22px rgba(0,82,217,.14)">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico" style="background:var(--primary);color:#fff">🧪</div>
+        <div class="wh-info">
+          <div class="wh-t" style="color:var(--primary)">主线一：额度划拨——把"测到什么程度可以放行"这件事定下来</div>
+          <div class="wh-sum">4 点优化发版 → <strong>对齐账目规则</strong> → 场景矩阵实测通过</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">划拨是新功能，组合场景多，首轮测试后仍有 4 点优化待落地</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>提出优化（<strong>合计金额加总</strong>、删除键误删、700/1400 底线校验、员工→组织批量按钮），当天确认排期</li>
+          <li>发版后<strong>主动找开发对齐账目逻辑</strong></li>
+          <li>提前梳理<strong>划拨场景矩阵表</strong>，作为对齐依据</li>
+          <li>实测 CDG 跨条线的部门间年包划拨，通过</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">达成共识：<strong>组织转组织、组织转人两类主要场景覆盖即可</strong>，同一账目逻辑下的其他组合不再穷举；正式环境有实际单据后，通过 AI 校验流水兜底。</div></div>
+        <div class="work-take">💡 <b>我的判断：</b>组合穷举不完，按账目逻辑分类后<strong>两类主要场景覆盖即可</strong>，其余交给线上流水校验兜底。</div>
+      </div>
+    </details>
+
+    <!-- 2.2 主线二：机器人通知 -->
+    <details class="work-card" open="">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico" style="background:var(--purple-light);color:var(--purple)">📣</div>
+        <div class="wh-info">
+          <div class="wh-t">主线二：机器人通知上线——308 位 BP 的第一次全量推送</div>
+          <div class="wh-sum">定范围 · <strong>定名单来源</strong> · 去重后先测后发</div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body">
+        <div class="work-step"><div class="ws-k">背景</div><div class="ws-v">9 月窗口 8.25 开启；机器人此前只做单点通知，没做过全量</div></div>
+        <div class="work-step"><div class="ws-k">做了什么</div><div class="ws-v"><ul style="margin:0;padding-left:14px;line-height:1.75">
+          <li>名单<strong>直接从 Token 系统权限表导出 HRBP 列</strong></li>
+          <li>范围<strong>只发 BP</strong>，不含额度管理员和组织负责人——与上级确认后执行</li>
+          <li>去重后 308 位；消息目前不支持自动合并，改用<strong>名单去重实现一人一条</strong></li>
+          <li>先发测试消息验证，确认后发全量</li>
+        </ul></div></div>
+        <div class="work-step"><div class="ws-k">结果</div><div class="ws-v">推送完成；建兜底方案，<strong>8.31 再导出未填报部门名单并在合并后二次提醒</strong>。</div></div>
+        <div class="work-take">💡 <b>我的判断：</b>全量推送不可撤回，<strong>发送前的三件事比发送本身更重要</strong>——定范围（上级确认）、去重（名单层面解决）、兜底（8.31 二次提醒）。</div>
+        <div class="work-link">
+          <span style="font-size:12px;color:var(--text-3)">📎 交付物：</span>
+          <a href="https://doc.weixin.qq.com/sheet/e3_ASoA2wZbAI0CNbcIp4xhASLmBUSE8?scode=AJEAIQdfAAofMgNDYEASoA2wZbAI0&tab=BB08J2" target="_blank" style="font-size:12.5px;font-weight:600;color:var(--primary);text-decoration:none;border-bottom:1px solid var(--primary-light)">《机器人通知兜底方案》</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2.3 支撑线 -->
+    <details class="work-card" open="">
+      <summary style="cursor: pointer;">
+        <div class="wh-ico">💬</div>
+        <div class="wh-info">
+          <div class="wh-t">支撑线：权限与答疑</div>
+          <div class="wh-sum"><b>4 批权限 · haiwenlin 归因组织异动 · Robotics X 明确授权边界</b></div>
+        </div>
+        <span class="wh-arrow">▾</span>
+      </summary>
+      <div class="work-body" style="grid-template-columns:1fr">
+        <div style="padding:0 14px;font-size:12.5px;color:var(--text-2);line-height:1.7">
+          完成 4 批权限增补与剔除；haiwenlin 权限失效定位为<strong>组织异动导致账户挂靠层级变化</strong>；Robotics X 的 M 负责人需求明确为<strong>系统不支持按人差异化配置</strong>，改提额度管理员方案。日常答疑覆盖一键复用范围、跨部门调拨规则等。
+        </div>
+        <div class="work-take" style="margin-top:10px">💡 <b>我的判断：</b>多数个案的根因在<strong>组织形态和系统规则不匹配</strong>。把边界说清楚比答应下来更有用。</div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 3. 反思 -->
+  <div class="section">
+    <h2><span class="num">3</span>卡点 · 尝试与反思</h2>
+
+    <div class="ref-card highlight">
+      <h4>🎯 这周三件事，本质是同一件事</h4>
+      <div class="turn-body">
+        <ul style="margin:0;padding-left:18px;font-size:13px;color:var(--text-2);line-height:1.9">
+          <li><strong>划拨：</strong>业务要"账目自洽" → 写成<strong>场景矩阵表</strong></li>
+          <li><strong>通知：</strong>业务要"每人恰好一条" → 写成<strong>名单去重</strong></li>
+          <li><strong>Robotics X：</strong>业务要"项目负责人管成员"，系统只认"管整个团队" → 写成<strong>额度管理员方案+完整名单</strong></li>
+        </ul>
+        <div class="turn-sub" style="margin-bottom:0;margin-top:14px"><strong>共同点：业务诉求和系统能表达之间差一层翻译。</strong>这层翻译需要同时知道两边——只懂业务落不了地，只懂系统只能回"做不了"。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 下周计划 -->
+  <div class="section">
+    <h2><span class="num">4</span>下周工作计划</h2>
+    <p class="desc">主线：<strong>9 月窗口 8.31 截止，执行二次提醒</strong>。每条标注承接逻辑。</p>
+    <div class="next-list">
+      <div class="next-item">
+        <div class="n-num">1</div>
+        <div class="n-content">
+          <span class="n-src">重点任务</span>
+          <div class="n-title">8.31 再导出未填报部门名单，做第二轮机器人提醒</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>名单口径与兜底方案已就绪，具备执行条件；关闭窗口前跟进剩余部门，同时可验证第一轮推送效果，定位未响应原因。</div>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="n-num">2</div>
+        <div class="n-content">
+          <span class="n-src">数据分析</span>
+          <div class="n-title">推进辅助填报系统的用户行为分析</div>
+          <div class="n-from"><span class="nf-label">承接逻辑：</span>系统已上线运行，但尚未建立用户行为数据看板。底表已提供，待补齐 6.23 至今数据后启动分析。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    规划分析中心实习生周报 · 成俊晖（irisjhcheng）· 2026.08.24 - 08.28<br>
+  </div>
+</div>
+
+<!-- ===== 编辑工具栏：草稿存浏览器本地（刷新不丢），定稿后导出 HTML 覆盖源文件再部署 ===== -->
+<div id="editBar" style="position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;align-items:flex-end;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+  <div id="editHint" style="display: none; background: rgb(29, 33, 41); color: rgb(255, 255, 255); font-size: 12px; line-height: 1.6; padding: 8px 12px; border-radius: 8px; max-width: 250px; box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 16px;">
+    直接点击文字即可修改。改完点「✅ 完成编辑」存到本地，刷新不丢；定稿后点「💾 导出 HTML」下载，覆盖仓库里的源文件。
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+    <button id="btnReset" style="padding:10px 14px;border:none;border-radius:10px;background:#86909C;color:#fff;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(134,144,156,.35)">↩ 恢复原件</button>
+    <button id="btnExport" style="padding:10px 16px;border:none;border-radius:10px;background:#00A870;color:#fff;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,168,112,.35)">💾 导出 HTML</button>
+    <button id="btnEdit" style="padding: 10px 16px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; background: rgb(0, 82, 217); color: rgb(255, 255, 255); font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: rgba(0, 82, 217, 0.35) 0px 4px 14px;">✏️ 开启编辑</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* 每次改动本文件正文后，务必把 DECK_VER 递增（如 v2-20260829），
+     否则浏览器里残留的旧草稿会盖掉新内容。 */
+  var SAVE_KEY='weekly-2026-08-24';
+  var DECK_VER='v8-20260828';
+  var VER_KEY=SAVE_KEY+'__ver';
+
+  var editing=false;
+  var btnEdit=document.getElementById('btnEdit');
+  var btnExport=document.getElementById('btnExport');
+  var btnReset=document.getElementById('btnReset');
+  var hint=document.getElementById('editHint');
+  var bar=document.getElementById('editBar');
+  var wrap=document.querySelector('.wrap');
+  var FILE_NAME='weekly-2026-08-24.html';
+
+  // 部署到线上（https 非本地）时自动隐藏工具栏；本地 file:// 或 localhost 才显示
+  var host=location.hostname;
+  var isLocal=location.protocol==='file:'||host==='localhost'||host==='127.0.0.1'||host==='';
+  if(!isLocal){ bar.style.display='none'; }
+
+  function flash(msg,isErr){
+    var t=document.createElement('div'); t.textContent=msg;
+    t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:'+(isErr?'#D54941':'#00A870')+';color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:10000;box-shadow:0 4px 16px rgba(0,0,0,.2);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
+    document.body.appendChild(t); setTimeout(function(){ t.remove(); },1800);
+  }
+
+  function setEditable(on){ wrap.setAttribute('contenteditable', on?'true':'false'); wrap.style.outline='none'; }
+
+  function exitEdit(){
+    editing=false; setEditable(false);
+    btnEdit.textContent='✏️ 开启编辑'; btnEdit.style.background='#0052D9'; hint.style.display='none';
+    wrap.querySelectorAll('details.work-card > summary').forEach(function(s){ s.style.cursor='pointer'; });
+  }
+  function enterEdit(){
+    editing=true; setEditable(true);
+    btnEdit.textContent='✅ 完成编辑'; btnEdit.style.background='#ED7B2F'; hint.style.display='block';
+    wrap.querySelectorAll('details.work-card > summary').forEach(function(s){ s.style.cursor='text'; });
+  }
+
+  // 正文快照：去掉 contenteditable 属性再存
+  function snapshot(){
+    var c=wrap.cloneNode(true);
+    c.removeAttribute('contenteditable');
+    c.querySelectorAll('[contenteditable]').forEach(function(el){ el.removeAttribute('contenteditable'); });
+    return c.innerHTML;
+  }
+
+  function save(){
+    try{
+      localStorage.setItem(SAVE_KEY, snapshot());
+      localStorage.setItem(VER_KEY, DECK_VER);
+      return true;
+    }catch(e){ return false; }
+  }
+
+  // 版本号对得上才回填草稿；对不上说明源文件改过，清掉旧缓存用文件里的内容
+  function restore(){
+    var v=null,h=null;
+    try{ v=localStorage.getItem(VER_KEY); h=localStorage.getItem(SAVE_KEY); }catch(e){ return false; }
+    if(v!==DECK_VER||!h){
+      try{ localStorage.removeItem(VER_KEY); localStorage.removeItem(SAVE_KEY); }catch(e){}
+      return false;
+    }
+    wrap.innerHTML=h; return true;
+  }
+
+  btnEdit.addEventListener('click',function(){
+    if(editing){
+      exitEdit();
+      if(save()) flash('已保存到本地 ✓ 刷新不丢');
+      else flash('保存失败：浏览器禁用了本地存储', true);
+    }else{ enterEdit(); }
+  });
+
+  // 事件委托：正文可能被整体替换，不能把监听绑在 summary 上
+  document.addEventListener('click',function(e){
+    if(!editing) return;
+    var el=e.target;
+    if(el && el.closest && el.closest('details.work-card > summary')) e.preventDefault();
+  },true);
+
+  btnReset.addEventListener('click',function(){
+    if(!window.confirm('清除本地草稿，恢复为本文件的原始内容？')) return;
+    try{ localStorage.removeItem(VER_KEY); localStorage.removeItem(SAVE_KEY); }catch(e){}
+    location.reload();
+  });
+
+  btnExport.addEventListener('click',function(){
+    if(editing){ exitEdit(); }
+    var clone=document.documentElement.cloneNode(true);
+    clone.querySelectorAll('[contenteditable]').forEach(function(el){ el.removeAttribute('contenteditable'); });
+    var html='<!DOCTYPE html>\n'+clone.outerHTML;
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=FILE_NAME;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+    flash('已导出 '+FILE_NAME+'，覆盖仓库源文件后推送即可');
+  });
+
+  if(restore()) flash('已恢复上次编辑的草稿');
+})();
+</script>
+
+
+</body></html>
